@@ -1,0 +1,284 @@
+[gd_scene load_steps=19 format=3 uid="uid://sav0qji0ak0b"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8170c"]
+[ext_resource type="PackedScene" uid="uid://c8yf5ugw0hu34" path="res://scenes/level/level.tscn" id="1_xm2jn"]
+[ext_resource type="Script" path="res://scenes/bingo_machine/bingo_machine.gd" id="3_6rs6f"]
+[ext_resource type="PackedScene" uid="uid://ctq35uorvmu4u" path="res://scenes/bingo_machine/bingo_cage_outer_ring.glb" id="4_bldfb"]
+[ext_resource type="PackedScene" uid="uid://q0vg05xchrml" path="res://scenes/post_processing.tscn" id="4_hvjgh"]
+[ext_resource type="PackedScene" uid="uid://chxrfcdcwov6y" path="res://scenes/bingo_machine/bingo_cage_inner_ring.glb" id="5_t8pg7"]
+[ext_resource type="PackedScene" uid="uid://dmx143ip4pmu2" path="res://scenes/bingo_machine/bingo_cage.glb" id="6_ya6vj"]
+[ext_resource type="PackedScene" uid="uid://co5sxj5sac1kj" path="res://scenes/bingo_machine/bingo_cage_door.glb" id="7_ofhhr"]
+[ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball.tscn" id="8_yrlct"]
+
+[sub_resource type="Animation" id="Animation_2w4dd"]
+resource_name = "get_ball"
+length = 8.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/BingoMachine/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("spin", "door_open", "ball_roll_out"),
+"times": PackedFloat32Array(0, 3.03333, 4)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.53333, 5.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.8, 1.1), Vector3(0, 0.7, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:fov")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.53333, 5.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [60.0, 50.0]
+}
+
+[sub_resource type="Animation" id="Animation_5da5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.8, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [60.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cuic"]
+_data = {
+"RESET": SubResource("Animation_5da5x"),
+"get_ball": SubResource("Animation_2w4dd")
+}
+
+[sub_resource type="Animation" id="Animation_g35tq"]
+resource_name = "spin"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OuterRing/InnerRing/Cage:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_4kr7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OuterRing/InnerRing/Cage:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BingoBall:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.794327, -0.464325, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BingoBall:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nbmos"]
+resource_name = "door_open"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.74533)]
+}
+
+[sub_resource type="Animation" id="Animation_fuosb"]
+resource_name = "door_close"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.74533), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ca0a7"]
+resource_name = "ball_roll_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BingoBall:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.794327, -0.464325, 0), Vector3(1.091, -0.606, 0), Vector3(1.536, -0.768, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BingoBall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsa08"]
+_data = {
+"RESET": SubResource("Animation_4kr7s"),
+"ball_roll_out": SubResource("Animation_ca0a7"),
+"door_close": SubResource("Animation_fuosb"),
+"door_open": SubResource("Animation_nbmos"),
+"spin": SubResource("Animation_g35tq")
+}
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8170c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2cuic")
+}
+autoplay = "get_ball"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.8, 1.1)
+fov = 60.0
+
+[node name="Level" parent="." instance=ExtResource("1_xm2jn")]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="BingoMachine" type="Node3D" parent="Entities"]
+transform = Transform3D(3.72529e-09, 0, -0.169182, 0, 0.169182, 0, 0.169182, 0, 3.72529e-09, 0, 0.789329, 0)
+script = ExtResource("3_6rs6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Entities/BingoMachine"]
+libraries = {
+"": SubResource("AnimationLibrary_xsa08")
+}
+
+[node name="OuterRing" parent="Entities/BingoMachine" instance=ExtResource("4_bldfb")]
+
+[node name="InnerRing" parent="Entities/BingoMachine/OuterRing" instance=ExtResource("5_t8pg7")]
+
+[node name="Cage" parent="Entities/BingoMachine/OuterRing/InnerRing" instance=ExtResource("6_ya6vj")]
+
+[node name="DoorPivot" type="Node3D" parent="Entities/BingoMachine/OuterRing/InnerRing/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782398, -0.584647, 0)
+
+[node name="Door" parent="Entities/BingoMachine/OuterRing/InnerRing/Cage/DoorPivot" instance=ExtResource("7_ofhhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.807942, 0.579389, 0)
+
+[node name="BingoBall" parent="Entities/BingoMachine" instance=ExtResource("8_yrlct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.794327, -0.464325, 0)
+
+[node name="PostProcessing" parent="." instance=ExtResource("4_hvjgh")]

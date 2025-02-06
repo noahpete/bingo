@@ -1,0 +1,190 @@
+[gd_scene load_steps=13 format=3 uid="uid://cda58v0872q6d"]
+
+[ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball.tscn" id="1_0j5tp"]
+[ext_resource type="Script" path="res://scenes/bingo_machine/bingo_machine.gd" id="1_e0p63"]
+[ext_resource type="PackedScene" uid="uid://ctq35uorvmu4u" path="res://scenes/bingo_machine/bingo_cage_outer_ring.glb" id="1_hm8ou"]
+[ext_resource type="PackedScene" uid="uid://chxrfcdcwov6y" path="res://scenes/bingo_machine/bingo_cage_inner_ring.glb" id="2_cisbd"]
+[ext_resource type="PackedScene" uid="uid://dmx143ip4pmu2" path="res://scenes/bingo_machine/bingo_cage.glb" id="3_v1ta2"]
+[ext_resource type="PackedScene" uid="uid://co5sxj5sac1kj" path="res://scenes/bingo_machine/bingo_cage_door.glb" id="4_iaicn"]
+
+[sub_resource type="Animation" id="Animation_g35tq"]
+resource_name = "spin"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OuterRing/InnerRing/Cage:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_4kr7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OuterRing/InnerRing/Cage:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BingoBall:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.794327, -0.464325, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BingoBall:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nbmos"]
+resource_name = "door_open"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.74533)]
+}
+
+[sub_resource type="Animation" id="Animation_fuosb"]
+resource_name = "door_close"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterRing/InnerRing/Cage/DoorPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.74533), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ca0a7"]
+resource_name = "ball_roll_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BingoBall:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.794327, -0.464325, 0), Vector3(1.091, -0.606, 0), Vector3(1.536, -0.768, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BingoBall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsa08"]
+_data = {
+"RESET": SubResource("Animation_4kr7s"),
+"ball_roll_out": SubResource("Animation_ca0a7"),
+"door_close": SubResource("Animation_fuosb"),
+"door_open": SubResource("Animation_nbmos"),
+"spin": SubResource("Animation_g35tq")
+}
+
+[node name="BingoMachine" type="Node3D"]
+script = ExtResource("1_e0p63")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xsa08")
+}
+
+[node name="OuterRing" parent="." instance=ExtResource("1_hm8ou")]
+
+[node name="InnerRing" parent="OuterRing" instance=ExtResource("2_cisbd")]
+
+[node name="Cage" parent="OuterRing/InnerRing" instance=ExtResource("3_v1ta2")]
+
+[node name="DoorPivot" type="Node3D" parent="OuterRing/InnerRing/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782398, -0.584647, 0)
+
+[node name="Door" parent="OuterRing/InnerRing/Cage/DoorPivot" instance=ExtResource("4_iaicn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.807942, 0.579389, 0)
+
+[node name="BingoBall" parent="." instance=ExtResource("1_0j5tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.794327, -0.464325, 0)
