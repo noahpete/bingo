@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djsu373ir63s4"]
+[gd_scene load_steps=4 format=3 uid="uid://djsu373ir63s4"]
 
 [ext_resource type="Script" path="res://scenes/ball/bingo_ball.gd" id="1_ljp66"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j0i3w"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_huoog"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_j0i3w")
 
 [sub_resource type="SphereMesh" id="SphereMesh_kitkv"]
 material = SubResource("StandardMaterial3D_huoog")
@@ -16,36 +12,6 @@ height = 0.2
 radial_segments = 8
 rings = 4
 
-[sub_resource type="LabelSettings" id="LabelSettings_nk305"]
-font_size = 32
-
 [node name="BingoBall" type="MeshInstance3D"]
 mesh = SubResource("SphereMesh_kitkv")
 script = ExtResource("1_ljp66")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(128, 128)
-render_target_update_mode = 4
-
-[node name="ColorRect" type="ColorRect" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "16"
-label_settings = SubResource("LabelSettings_nk305")
