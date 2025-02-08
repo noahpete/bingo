@@ -1,0 +1,17 @@
+[gd_scene load_steps=7 format=3 uid="uid://dftbb8x8tnmv"]
+
+[ext_resource type="Script" path="res://scenes/dabber/dabs/dab.gd" id="1_lxuv5"]
+[ext_resource type="Texture2D" uid="uid://dlpu6pk4jlo3i" path="res://scenes/dabber/dabs/dab0.png" id="2_d4b6f"]
+[ext_resource type="Texture2D" uid="uid://s8rf6t73ithe" path="res://scenes/dabber/dabs/dab1.png" id="3_a6kqj"]
+[ext_resource type="Texture2D" uid="uid://ce0qcdvpgec3j" path="res://scenes/dabber/dabs/dab2.png" id="4_r3vrq"]
+[ext_resource type="Texture2D" uid="uid://ksv0l43rbupd" path="res://scenes/dabber/dabs/dab3.png" id="5_ie1cw"]
+[ext_resource type="Texture2D" uid="uid://clmdyogm8ti30" path="res://scenes/dabber/dabs/dab4.png" id="6_nm2ac"]
+
+[node name="Dab" type="Node3D"]
+script = ExtResource("1_lxuv5")
+dab_color = Color(0.207843, 0.462745, 1, 0.862745)
+dabs = Array[Texture2D]([ExtResource("2_d4b6f"), ExtResource("3_a6kqj"), ExtResource("4_r3vrq"), ExtResource("5_ie1cw"), ExtResource("6_nm2ac")])
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(0.02, 0.02, 0.02)
+texture_albedo = ExtResource("2_d4b6f")

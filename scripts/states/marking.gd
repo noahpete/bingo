@@ -59,6 +59,9 @@ func _update_dabber_xz_position() -> void:
 func _dab() -> void:
 	var down_tween = create_tween()
 	down_tween.tween_property(dabber, "global_transform:origin:y", MARKER_LOWERED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
+	dabber.dab()
 	await down_tween.finished
+	
+	
 	var up_tween = create_tween()
 	up_tween.tween_property(dabber, "global_transform:origin:y", MARKER_RAISED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
