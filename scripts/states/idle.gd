@@ -20,13 +20,17 @@ func enter() -> void:
 			item.original_position = item.global_transform.origin
 			
 			
+func exit() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	
+			
 func update(delta: float) -> void:
 	pass
 
 
 func input_update(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var result = input_manager.raycast()
+		var result = input_manager.raycast(true)
 		if result and result.collider.get_parent() is Item:
 			var item = result.collider.get_parent() as Item
 			if current_hovered_item != item:
@@ -38,7 +42,7 @@ func input_update(event: InputEvent) -> void:
 			
 	elif event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			if current_hovered_item is Marker:
+			if current_hovered_item is Dabber:
 				transition.emit("Marking")
 	
 
