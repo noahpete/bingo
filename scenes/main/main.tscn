@@ -146,6 +146,8 @@ script = ExtResource("5_a3l7h")
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("6_1yex1")
 
+[node name="Timer" type="Timer" parent="."]
+
 [node name="PostProcessing" parent="." instance=ExtResource("4_hvjgh")]
 
 [node name="Camera3D" type="Camera3D" parent="."]

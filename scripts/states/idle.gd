@@ -34,7 +34,7 @@ func input_update(event: InputEvent) -> void:
 		if result and result.collider.get_parent() is Item:
 			var item = result.collider.get_parent() as Item
 			if current_hovered_item != item:
-				_reset_hovered_item() 
+				_reset_hovered_item()
 				current_hovered_item = item
 				_hover_item(item)
 		else:
