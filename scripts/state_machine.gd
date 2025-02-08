@@ -4,7 +4,7 @@ class_name StateMachine
 @export var current_state: State
 
 var states: Dictionary = {}
-
+var previous_state: State = null
 
 func _ready() -> void:
 	for child in get_children():
@@ -14,6 +14,7 @@ func _ready() -> void:
 		else:
 			push_warning("State machine contains incompatible child node [" + child.name + "]")
 	call_deferred("_on_initial_enter")
+
 
 func _process(delta: float) -> void:
 	current_state.update(delta)
@@ -38,6 +39,7 @@ func _on_child_transition(new_state_name: StringName) -> void:
 			print("Transitioning from [" + current_state.name + "] to [" + new_state.name + "]")
 			current_state.exit()
 			new_state.enter()
+			previous_state = current_state
 			current_state = new_state
 	else:
 		push_warning("State [" + new_state_name + "] does not exist")

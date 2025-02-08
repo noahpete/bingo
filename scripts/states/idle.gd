@@ -27,23 +27,20 @@ func update(delta: float) -> void:
 func input_update(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var result = input_manager.raycast()
-
 		if result and result.collider.get_parent() is Item:
 			var item = result.collider.get_parent() as Item
-
-			# Only raise the item if it's different from the currently hovered one
 			if current_hovered_item != item:
-				_reset_hovered_item()  # Lower any previously hovered item
-
-				# Store the new hovered item and its original position
+				_reset_hovered_item() 
 				current_hovered_item = item
-
-				# Raise the new item
 				_hover_item(item)
 		else:
-			# Mouse is not hovering over any item, reset any previously hovered item
 			_reset_hovered_item()
-
+			
+	elif event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			if current_hovered_item is Marker:
+				transition.emit("Marking")
+	
 
 func _hover_item(item: Item) -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
