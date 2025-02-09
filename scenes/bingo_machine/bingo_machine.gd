@@ -6,3 +6,4 @@ class_name BingoMachine
 
 func play_animation(animation_name: String) -> void:
 	animation_player.play(animation_name)
+	await animation_player.animation_finished
