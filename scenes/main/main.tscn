@@ -168,6 +168,9 @@ target_position = Vector3(0, 0, -1)
 [node name="BingoMachine" parent="Entities" instance=ExtResource("3_t17rl")]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0.498174, 0)
 
+[node name="Selector" parent="Entities/BingoMachine/Cage" index="1"]
+transform = Transform3D(1.2, 5.72394e-08, 0, -5.72394e-08, 1.2, 0, 0, 0, 1.2, 4.654e-08, 0.97569, 0)
+
 [node name="Board" parent="Entities" instance=ExtResource("11_8rea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500177, 0.35977)
 
