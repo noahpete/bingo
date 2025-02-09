@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cica17kyvab1x"]
+[gd_scene load_steps=13 format=3 uid="uid://cica17kyvab1x"]
 
 [ext_resource type="Script" path="res://scenes/bingo_machine/bingo_machine.gd" id="1_01qst"]
 [ext_resource type="PackedScene" uid="uid://b685krxhbrmuq" path="res://scenes/bingo_machine/bingo_machine_base.glb" id="1_o402f"]
@@ -144,6 +144,21 @@ _data = {
 "spin": SubResource("Animation_rs3r1")
 }
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_u2gdu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekwxq"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_u2gdu")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pik28"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ekwxq")
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
 [node name="BingoMachine" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("1_01qst")
@@ -164,3 +179,4 @@ transform = Transform3D(1.2, 5.72394e-08, 0, -5.72394e-08, 1.2, 0, 0, 0, 1.2, 4.
 [node name="BingoBall" parent="." instance=ExtResource("5_80orr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00236545, 1.61147, -0.00749148)
 visible = false
+mesh = SubResource("SphereMesh_pik28")
