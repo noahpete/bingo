@@ -7,4 +7,8 @@ class_name BingoBall
 
 func _ready() -> void:
 	color_rect.color = Color(randf(), randf(), randf())
-	rich_text_label.text = str(randi_range(1, 99))
+	
+	var value = randi_range(1, 75)
+	rich_text_label.text = str(value)
+	if value < 10:
+		rich_text_label.position.x += 3
