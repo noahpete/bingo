@@ -1,9 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://h2cal5s5pwdd"]
+[gd_scene load_steps=7 format=3 uid="uid://h2cal5s5pwdd"]
 
 [ext_resource type="Script" path="res://scenes/board/board.gd" id="1_0r23e"]
+[ext_resource type="Texture2D" uid="uid://5fc6m5jdx100" path="res://scenes/board/bingo_board.png" id="2_hotfd"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_sg6x3"]
-size = Vector2(0.1, 0.16)
+[sub_resource type="ViewportTexture" id="ViewportTexture_bseqg"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n670u"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_bseqg")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6gk5p"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_n670u")
+size = Vector2(0.12, 0.16)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1n5qy"]
 data = PackedVector3Array(0.075, 0, 0.125, -0.075, 0, 0.125, 0.075, 0, -0.125, -0.075, 0, 0.125, -0.075, 0, -0.125, 0.075, 0, -0.125)
@@ -12,10 +22,28 @@ data = PackedVector3Array(0.075, 0, 0.125, -0.075, 0, 0.125, 0.075, 0, -0.125, -
 script = ExtResource("1_0r23e")
 
 [node name="Board" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_sg6x3")
+mesh = SubResource("PlaneMesh_6gk5p")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Board"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1n5qy")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(100, 128)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="Background" type="ColorRect" parent="SubViewport/CanvasLayer"]
+custom_minimum_size = Vector2(100, 128)
+offset_right = 92.0
+offset_bottom = 128.0
+
+[node name="BingoTexture" type="TextureRect" parent="SubViewport/CanvasLayer"]
+offset_left = -6.0
+offset_top = 9.0
+offset_right = 109.0
+offset_bottom = 119.0
+texture = ExtResource("2_hotfd")
+expand_mode = 1
