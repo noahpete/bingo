@@ -20,6 +20,7 @@ func _generate_random_board() -> void:
 	_generate_board_column(n_node, 31, 45)
 	_generate_board_column(g_node, 46, 60)
 	_generate_board_column(o_node, 61, 75)
+	
 			
 func _generate_board_column(node: Control, lo: int, hi: int) -> void:
 	var values := range(lo, hi + 1)
