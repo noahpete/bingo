@@ -27,3 +27,7 @@ folder_colors={
 "res://scripts/": "red",
 "res://shaders/": "purple"
 }
+
+[physics]
+
+3d/default_gravity=1.0

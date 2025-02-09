@@ -1,54 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://djsu373ir63s4"]
+[gd_scene load_steps=7 format=3 uid="uid://cmgrd1emqwmey"]
 
-[ext_resource type="Script" path="res://scenes/ball/bingo_ball.gd" id="1_ljp66"]
-[ext_resource type="Texture2D" uid="uid://0hjypmgt7m3x" path="res://scenes/ball/circle.png" id="2_idgcu"]
+[ext_resource type="Script" path="res://scenes/ball/bingo_ball.gd" id="1_b1x87"]
+[ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball_mesh.tscn" id="2_1bk17"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wmwj1"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_0yy65"]
+radius = 0.015
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ny0bd"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2nfo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oas2e"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_wmwj1")
+albedo_texture = SubResource("ViewportTexture_ny0bd")
 
-[sub_resource type="SphereMesh" id="SphereMesh_kitkv"]
+[sub_resource type="SphereMesh" id="SphereMesh_clcm4"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_o2nfo")
-radius = 0.1
-height = 0.2
+material = SubResource("StandardMaterial3D_oas2e")
+radius = 0.015
+height = 0.03
 radial_segments = 8
 rings = 4
 
-[node name="BingoBall" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_kitkv")
-script = ExtResource("1_ljp66")
+[node name="BingoBall" type="RigidBody3D"]
+gravity_scale = 4.055
+script = ExtResource("1_b1x87")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(64, 64)
-render_target_update_mode = 4
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0yy65")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+[node name="Visuals" type="Node3D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport/CanvasLayer"]
-custom_minimum_size = Vector2(64, 64)
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/CanvasLayer"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 44.0
-offset_bottom = 44.0
-texture = ExtResource("2_idgcu")
-expand_mode = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/CanvasLayer"]
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 47.0
-offset_bottom = 51.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/normal_font_size = 12
-text = "77"
-fit_content = true
-autowrap_mode = 0
+[node name="BingoBallMesh" parent="Visuals" instance=ExtResource("2_1bk17")]
+mesh = SubResource("SphereMesh_clcm4")

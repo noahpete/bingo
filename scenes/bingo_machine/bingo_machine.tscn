@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://cica17kyvab1x"]
+[gd_scene load_steps=14 format=3 uid="uid://cica17kyvab1x"]
 
 [ext_resource type="Script" path="res://scenes/bingo_machine/bingo_machine.gd" id="1_01qst"]
 [ext_resource type="PackedScene" uid="uid://b685krxhbrmuq" path="res://scenes/bingo_machine/bingo_machine_base.glb" id="1_o402f"]
-[ext_resource type="PackedScene" uid="uid://dq1hupr76y2wa" path="res://scenes/bingo_machine/bingo_machine_cage.glb" id="2_2mecc"]
-[ext_resource type="PackedScene" uid="uid://c147iu6str244" path="res://scenes/bingo_machine/bingo_machine_selector.glb" id="3_pqora"]
-[ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball.tscn" id="5_80orr"]
+[ext_resource type="PackedScene" uid="uid://rergk0yc220o" path="res://scenes/bingo_machine/bingo_machine_cage.tscn" id="5_3nhvp"]
+[ext_resource type="PackedScene" uid="uid://bv27duav3ah6w" path="res://scenes/bingo_machine/bingo_machine_selector.tscn" id="5_5xtm4"]
+[ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball_mesh.tscn" id="5_80orr"]
+[ext_resource type="PackedScene" uid="uid://cmgrd1emqwmey" path="res://scenes/ball/bingo_ball.tscn" id="6_i7t4p"]
 
 [sub_resource type="Animation" id="Animation_oxwsw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Cage:rotation")
+tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,70 +24,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BingoBall:visible")
+tracks/1/path = NodePath("Visuals:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BingoBall:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.00236545, 1.61147, -0.00749148)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BingoBall:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Cage/Selector:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -4.76995e-08)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Visuals:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Visuals:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -96,114 +37,42 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_ypuqk"]
 resource_name = "dispense"
 length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BingoBall:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BingoBall:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.233333, 0.433333, 0.766667, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00236545, 1.61147, -0.00749148), Vector3(-0.002, 1.324, -0.007), Vector3(0.00822853, 1.13398, -0.0844466), Vector3(0.0307313, 0.795454, -0.520991), Vector3(1.52991, 0.421291, -0.520991)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BingoBall:rotation")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.266667, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.14159), Vector3(0, -1.5708, 0), Vector3(-11.7408, -1.59698, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Cage/Selector:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -4.76995e-08), Vector3(0, 0, 3.14159)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Cage:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -3.14159)]
-}
 
 [sub_resource type="Animation" id="Animation_rs3r1"]
 resource_name = "spin"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Cage:rotation")
-tracks/0/interp = 2
+tracks/0/enabled = false
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.466667, 0.566667, 0.633333, 0.7, 0.8, 0.9, 1, 1.06667, 1.16667, 1.26667, 1.4, 1.53333, 1.73333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 3.14159), Vector3(0, 0, 21.9911)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = false
-tracks/1/path = NodePath("Visuals:position")
+tracks/1/path = NodePath("Visuals:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.333333, 0.466667, 0.566667, 0.633333, 0.7, 0.8, 0.9, 1, 1.06667, 1.16667, 1.26667, 1.4, 1.53333, 1.73333, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0.0582361, 0), Vector3(0, 0.09, 0), Vector3(0, 0.099, 0.035), Vector3(0, 0.033, 0.058), Vector3(0, 0.036, 0.055), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.466667, 0.566667, 0.633333, 0.7, 0.8, 0.9, 1, 1.06667, 1.16667, 1.26667, 1.4, 1.53333, 1.73333, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(-0.0663775, -0.00398895, 0.0600671), Vector3(-0.179083, -0.00381244, 0.0570458), Vector3(-0.0366519, -0.00349066, 0.0541052), Vector3(-0.0959931, -0.00349066, 0.00698132), Vector3(0.0925025, -0.00349066, 0.00698132), Vector3(0, 0, 0)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.233333, 1.7),
+"times": PackedFloat32Array(0.233333, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -221,41 +90,48 @@ _data = {
 "spin": SubResource("Animation_rs3r1")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u2gdu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2sfwi"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekwxq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmv3l"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_u2gdu")
+albedo_texture = SubResource("ViewportTexture_2sfwi")
 
-[sub_resource type="SphereMesh" id="SphereMesh_pik28"]
+[sub_resource type="SphereMesh" id="SphereMesh_qbhdq"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ekwxq")
-radius = 0.1
-height = 0.2
+material = SubResource("StandardMaterial3D_lmv3l")
+radius = 0.01
+height = 0.02
 radial_segments = 8
 rings = 4
 
 [node name="BingoMachine" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("1_01qst")
+ball_scene = ExtResource("6_i7t4p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tjmke")
 }
 
-[node name="BingoBall" parent="." instance=ExtResource("5_80orr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00236545, 1.61147, -0.00749148)
-visible = false
-mesh = SubResource("SphereMesh_pik28")
-
 [node name="Visuals" type="Node3D" parent="."]
 
 [node name="Base" parent="Visuals" instance=ExtResource("1_o402f")]
 
-[node name="Cage" parent="Visuals" instance=ExtResource("2_2mecc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59602, 0)
+[node name="Cage" parent="Visuals" instance=ExtResource("5_3nhvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0316656, 0.402961, 0)
 
-[node name="Selector" parent="Visuals/Cage" instance=ExtResource("3_pqora")]
-transform = Transform3D(1.2, 5.72394e-08, 0, -5.72394e-08, 1.2, 0, 0, 0, 1.2, 4.654e-08, 0.97569, 0)
+[node name="Selector" parent="Visuals/Cage" instance=ExtResource("5_5xtm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.151469, 0)
+
+[node name="BingoBallMesh" parent="Visuals" instance=ExtResource("5_80orr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0308331, 0.250878, -0.00179738)
+mesh = SubResource("SphereMesh_qbhdq")
+
+[node name="Balls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0152817, 0.446383, 0.00468584)
+
+[node name="BingoBall" parent="Balls" instance=ExtResource("6_i7t4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0377471, 0)
+visible = false

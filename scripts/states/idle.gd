@@ -22,10 +22,6 @@ func enter() -> void:
 			
 func exit() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	
-			
-func update(delta: float) -> void:
-	pass
 
 
 func input_update(event: InputEvent) -> void:

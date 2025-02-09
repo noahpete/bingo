@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://sav0qji0ak0b"]
+[gd_scene load_steps=17 format=3 uid="uid://sav0qji0ak0b"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8170c"]
 [ext_resource type="PackedScene" uid="uid://c4gxvtvav8h1h" path="res://scenes/level/level.tscn" id="1_xm2jn"]
@@ -115,10 +115,40 @@ tracks/3/keys = {
 "values": [Vector3(4.37114e-08, -1.5708, 1.5708), Vector3(0, 0.904081, 3.14159)]
 }
 
+[sub_resource type="Animation" id="Animation_3h1db"]
+resource_name = "temp"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.239144, 0.873539, 0.286131), Vector3(0.355103, 0.873539, -0.281151)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.249561, -0.576989, -0.0429155), Vector3(-0.249561, 2.02123, -0.0429155)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2cuic"]
 _data = {
 "RESET": SubResource("Animation_5xecm"),
-"idle_to_marking": SubResource("Animation_anqvq")
+"idle_to_marking": SubResource("Animation_anqvq"),
+"temp": SubResource("Animation_3h1db")
 }
 
 [node name="Main" type="Node"]
@@ -159,6 +189,7 @@ fov = 60.0
 
 [node name="CameraRayCast3D" type="RayCast3D" parent="Camera3D"]
 unique_name_in_owner = true
+visible = false
 target_position = Vector3(0, 0, -1)
 
 [node name="Level" parent="." instance=ExtResource("1_xm2jn")]
@@ -166,7 +197,7 @@ target_position = Vector3(0, 0, -1)
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="BingoMachine" parent="Entities" instance=ExtResource("3_t17rl")]
-transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0.498174, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.498174, 0)
 
 [node name="Board" parent="Entities" instance=ExtResource("11_8rea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500177, 0.35977)
