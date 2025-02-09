@@ -13,11 +13,9 @@ func dab() -> void:
 	if not result:
 		return
 	
-	# Get the collision point from the raycast
 	var intersection_point = ray_cast_3d.get_collision_point()
 	
-	# Instantiate the dab object and set its position to the intersection point
 	var dab = dab_scene.instantiate()
-	dab.global_transform.origin = intersection_point
 	await util.wait(0.1)
 	dab_manager.add_child(dab)
+	dab.global_transform.origin = intersection_point
