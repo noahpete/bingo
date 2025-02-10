@@ -21,7 +21,7 @@ height = 0.03
 radial_segments = 8
 rings = 4
 
-[node name="BingoBall" type="RigidBody3D"]
+[node name="BingoBall" type="RigidBody3D" groups=["balls"]]
 gravity_scale = 4.055
 script = ExtResource("1_b1x87")
 
