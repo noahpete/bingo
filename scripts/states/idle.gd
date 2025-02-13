@@ -9,6 +9,7 @@ const ITEM_HOVER_ANIMATION_DURATION = 0.1
 
 @onready var input_manager: InputManager = $"../../InputManager"
 @onready var items: Node3D = %Items
+@onready var main: Main = $"../.."
 
 var current_hovered_item: Item = null
 var item_is_tweening: bool = false
@@ -18,7 +19,7 @@ func enter() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	for item in items.get_children():
 			item.original_position = item.global_transform.origin
-			
+	
 			
 func exit() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -55,3 +56,7 @@ func _reset_hovered_item() -> void:
 		var tween = create_tween()
 		tween.tween_property(current_hovered_item, "global_transform:origin", current_hovered_item.original_position, ITEM_HOVER_ANIMATION_DURATION)
 		current_hovered_item = null
+
+
+func _on_end_turn() -> void:
+	await main.play_animation("spin_180")

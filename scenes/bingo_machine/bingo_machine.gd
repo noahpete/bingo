@@ -17,14 +17,12 @@ var original_rotation: Vector3
 var shake_strength := 0.0
 var shake_fade := false
 
-var i := 0
-
 
 func _ready() -> void:
 	original_position = visuals.position
 	original_rotation = visuals.rotation
 	cage_area_3d.body_exited.connect(_on_cage_area_exited)
-	_spawn_balls()
+	_spawn_initial_balls()
 	
 	
 func _process(delta: float) -> void:
@@ -41,7 +39,6 @@ func _process(delta: float) -> void:
 
 func _on_cage_area_exited(body) -> void:
 	if body.is_in_group("balls"):
-		i += 1
 		body.queue_free()
 		_spawn_ball()
 	
@@ -72,8 +69,8 @@ func random_offset(amount: float) -> Vector3:
 	)
 
 
-func _spawn_balls():
-	for i in range(75):
+func _spawn_initial_balls():
+	for i in range(40):
 		_spawn_ball()
 		
 		

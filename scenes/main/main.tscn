@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://sav0qji0ak0b"]
+[gd_scene load_steps=20 format=3 uid="uid://sav0qji0ak0b"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8170c"]
 [ext_resource type="PackedScene" uid="uid://c4gxvtvav8h1h" path="res://scenes/level/level.tscn" id="1_xm2jn"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://scripts/states/wait.gd" id="4_nq7ej"]
 [ext_resource type="Script" path="res://scripts/states/marking.gd" id="5_a3l7h"]
 [ext_resource type="Script" path="res://scripts/input_manager.gd" id="6_1yex1"]
+[ext_resource type="Script" path="res://scenes/main/player_turn.gd" id="6_xv3er"]
 [ext_resource type="Script" path="res://scripts/util.gd" id="7_641w3"]
+[ext_resource type="Script" path="res://scripts/states/opponent_turn.gd" id="7_nls3f"]
 [ext_resource type="PackedScene" uid="uid://bn7lutbjru3y0" path="res://scenes/dabber/dabber.tscn" id="10_xjqur"]
 [ext_resource type="PackedScene" uid="uid://h2cal5s5pwdd" path="res://scenes/board/board.tscn" id="11_8rea3"]
 
@@ -63,6 +65,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(4.37114e-08, -1.5708, 1.5708)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Entities/Pedestal:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_anqvq"]
 resource_name = "idle_to_marking"
@@ -115,40 +129,55 @@ tracks/3/keys = {
 "values": [Vector3(4.37114e-08, -1.5708, 1.5708), Vector3(0, 0.904081, 3.14159)]
 }
 
-[sub_resource type="Animation" id="Animation_3h1db"]
-resource_name = "temp"
-length = 10.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_ckqnj"]
+resource_name = "idle_to_display_ball"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.239144, 0.873539, 0.286131), Vector3(0.355103, 0.873539, -0.281151)]
+"values": [Vector3(0, 0.8, 1.1), Vector3(0.066049, 0.661005, 0.331711)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Camera3D:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.249561, -0.576989, -0.0429155), Vector3(-0.249561, 2.02123, -0.0429155)]
+"values": [Vector3(-0.0872664, 0, 0), Vector3(-0.549587, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_64i88"]
+resource_name = "spin_180"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Pedestal:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2cuic"]
 _data = {
 "RESET": SubResource("Animation_5xecm"),
+"idle_to_display_ball": SubResource("Animation_ckqnj"),
 "idle_to_marking": SubResource("Animation_anqvq"),
-"temp": SubResource("Animation_3h1db")
+"spin_180": SubResource("Animation_64i88")
 }
 
 [node name="Main" type="Node"]
@@ -161,7 +190,7 @@ libraries = {
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_78hol")
-current_state = NodePath("Idle")
+current_state = NodePath("PlayerTurn")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_mvqf2")
@@ -171,6 +200,12 @@ script = ExtResource("4_nq7ej")
 
 [node name="Marking" type="Node" parent="StateMachine"]
 script = ExtResource("5_a3l7h")
+
+[node name="PlayerTurn" type="Node" parent="StateMachine"]
+script = ExtResource("6_xv3er")
+
+[node name="OpponentTurn" type="Node" parent="StateMachine"]
+script = ExtResource("7_nls3f")
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("6_1yex1")
@@ -196,9 +231,6 @@ target_position = Vector3(0, 0, -1)
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="BingoMachine" parent="Entities" instance=ExtResource("3_t17rl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.498174, 0)
-
 [node name="Board" parent="Entities" instance=ExtResource("11_8rea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500177, 0.35977)
 
@@ -210,3 +242,37 @@ transform = Transform3D(-4.36983e-09, 3.61999e-07, -0.1, 0.1, -3.61999e-07, -4.3
 dab_manager = NodePath("../../Dabs")
 
 [node name="Dabs" type="Node3D" parent="Entities"]
+
+[node name="Pedestal" type="CSGCylinder3D" parent="Entities"]
+radius = 0.228528
+height = 1.09734
+
+[node name="BingoMachine" parent="Entities/Pedestal" instance=ExtResource("3_t17rl")]
+transform = Transform3D(-3.27836e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.27836e-08, 0, 0.547947, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerTurnUI" type="Control" parent="Control"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EndTurnButton" type="Button" parent="Control/PlayerTurnUI"]
+offset_left = 71.0
+offset_top = 973.0
+offset_right = 240.0
+offset_bottom = 1017.0
+text = "End Turn"
+
+[node name="OpponentTurnUI" type="Control" parent="Control"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
