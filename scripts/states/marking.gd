@@ -24,21 +24,35 @@ func enter() -> void:
 	var tween = create_tween()
 	tween.tween_property(dabber, "global_transform:origin:y", MARKER_RAISED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
 	
+	var rotation_tween = create_tween()
+	var target = Vector3(0.0, deg_to_rad(51.8), deg_to_rad(180.0))
+	rotation_tween.tween_property(dabber, "rotation", target, MARKER_VERTICAL_TRAVEL_TIME)
+	
 	dabber_return_area.visible = true
+	dabber_return_area.get_node("Area3D").collision_layer = 2
 	
 	# Avoid raycast from colliding with dabber
 	dabber.get_node("StaticBody3D").collision_layer = 0
+	dabber.get_node("Area3D").collision_layer = 0
 	
 
 func exit() -> void:
 	dabber.get_node("StaticBody3D").collision_layer = 1
+	dabber.get_node("Area3D").collision_layer = 1
 	
 	dabber_return_area.visible = false
+	dabber_return_area.get_node("Area3D").collision_layer = 0
 	
 	animation_player.play_backwards("idle_to_marking")
-	var tween = create_tween()
-	tween.tween_property(dabber, "global_transform:origin:y", MARKER_LOWERED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
-
+	
+	var rotation_tween = create_tween()
+	rotation_tween.tween_property(dabber, "rotation", dabber.original_rotation, MARKER_VERTICAL_TRAVEL_TIME)
+	
+	var position_tween = create_tween()
+	position_tween.tween_property(dabber, "global_transform:origin", dabber.original_position, MARKER_VERTICAL_TRAVEL_TIME)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 
 func update(delta: float) -> void:
 	_update_dabber_xz_position()
@@ -48,7 +62,12 @@ func input_update(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				_dab()
+				var result = input_manager.raycast(true, 0b10)
+				if result:
+					transition.emit("PlayerTurn")
+				else:
+					_dab()
+		
 
 
 func _update_dabber_xz_position() -> void:

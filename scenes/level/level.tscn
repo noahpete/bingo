@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4gxvtvav8h1h"]
+[gd_scene load_steps=6 format=3 uid="uid://c4gxvtvav8h1h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_20cx2"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,15 +20,6 @@ albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 material = SubResource("StandardMaterial3D_erx5x")
 size = Vector2(5, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5evby"]
-albedo_color = Color(0.194349, 0.194349, 0.194349, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5w3ol"]
-material = SubResource("StandardMaterial3D_5evby")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cycm7"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -40,11 +31,3 @@ shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_qlbyb")
-
-[node name="Table" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_5w3ol")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Table"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_cycm7")

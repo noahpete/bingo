@@ -22,19 +22,6 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func enter() -> void:
-	# State initialization
-	for item in items.get_children():
-		if item is Item:
-			item.original_position = item.global_transform.origin
-	
-	# State enter animations
-	await _spin_and_dispense()
-	
-	# Check if user has switched states in mean time
-	if state_machine.current_state is not PlayerTurnState:
-		return
-		
-	await _observe_ball()
 	player_turn_ui.visible = true
 
 
@@ -50,16 +37,3 @@ func input_update(event: InputEvent) -> void:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if item_manager.current_hovered_item is Dabber:
 				transition.emit("Marking")
-				
-
-func _spin_and_dispense():
-	await bingo_machine.play_animation("spin")
-	await bingo_machine.play_animation("dispense")
-	
-	
-func _observe_ball():
-	animation_player.play("idle_to_display_ball")
-	await animation_player.animation_finished
-	await %Util.wait(BALL_DISPLAY_TIME)
-	animation_player.play_backwards("idle_to_display_ball")
-	await animation_player.animation_finished
