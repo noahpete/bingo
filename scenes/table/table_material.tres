@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://be3lgi0rnob23"]
+
+[ext_resource type="Texture2D" uid="uid://bdre43v02h2on" path="res://scenes/table/table_texture_texture.png" id="1_tqoxk"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_tqoxk")
+roughness = 0.5
+texture_filter = 0
