@@ -11,6 +11,7 @@ const MARKER_VERTICAL_TRAVEL_TIME = 0.1
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var input_manager: InputManager = $"../../InputManager"
 @onready var timer: Timer = $"../../Timer"
+@onready var dabber_return_area: Node3D = $"../../Entities/Items/DabberReturnArea"
 
 var is_stamping := false
 var dabbing_progress := 0.0
@@ -23,12 +24,20 @@ func enter() -> void:
 	var tween = create_tween()
 	tween.tween_property(dabber, "global_transform:origin:y", MARKER_RAISED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
 	
+	dabber_return_area.visible = true
+	
 	# Avoid raycast from colliding with dabber
 	dabber.get_node("StaticBody3D").collision_layer = 0
 	
 
 func exit() -> void:
 	dabber.get_node("StaticBody3D").collision_layer = 1
+	
+	dabber_return_area.visible = false
+	
+	animation_player.play_backwards("idle_to_marking")
+	var tween = create_tween()
+	tween.tween_property(dabber, "global_transform:origin:y", MARKER_LOWERED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
 
 
 func update(delta: float) -> void:
@@ -61,7 +70,6 @@ func _dab() -> void:
 	down_tween.tween_property(dabber, "global_transform:origin:y", MARKER_LOWERED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
 	dabber.dab()
 	await down_tween.finished
-	
 	
 	var up_tween = create_tween()
 	up_tween.tween_property(dabber, "global_transform:origin:y", MARKER_RAISED_HEIGHT, MARKER_VERTICAL_TRAVEL_TIME)
