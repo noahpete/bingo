@@ -15,7 +15,7 @@ var colors = [
 func _ready() -> void:
 	color_rect.color = Color(colors.pick_random())
 	
-	var value = randi_range(1, 75)
+	var value = GameData.draw_ball_number()
 	rich_text_label.text = str(value)
 	if value < 10:
 		rich_text_label.position.x += 3
