@@ -1,8 +1,7 @@
 extends State
 class_name StartTurnState
 
-# State where a turn has just started. Prepares scene
-# for a player's turn.
+# State where a turn has just started; runs start turn animations.
 
 const BALL_DISPLAY_TIME := 1.0
 
@@ -20,4 +19,7 @@ func enter() -> void:
 	animation_player.play_backwards("idle_to_display_ball")
 	await animation_player.animation_finished
 	
-	transition.emit("PlayerTurn")
+	if GameData.is_player_turn:
+		transition.emit("PlayerTurn")
+	else:
+		transition.emit("OpponentTurn")

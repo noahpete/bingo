@@ -27,6 +27,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player_turn_ui.visible = false
+	GameData.is_player_turn = false
 
 
 func input_update(event: InputEvent) -> void:
