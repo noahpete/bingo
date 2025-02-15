@@ -33,5 +33,6 @@ target_position = Vector3(0, 1, 0)
 
 [node name="Decal" type="Decal" parent="." index="4"]
 transform = Transform3D(0.725146, 0, -0.688595, 0, 1, 0, 0.688595, 0, 0.725146, 0, 0.868647, 0)
+visible = false
 size = Vector3(0.3, 0.3, 0.3)
 texture_albedo = ExtResource("4_4p41h")

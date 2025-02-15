@@ -30,6 +30,7 @@ func enter() -> void:
 	
 	dauber_return_area.visible = true
 	dauber_return_area.get_node("Area3D").collision_layer = 2
+	dauber.get_node("Decal").visible = true
 	
 	# Avoid raycast from colliding with dauber
 	dauber.get_node("StaticBody3D").collision_layer = 0
@@ -39,6 +40,7 @@ func enter() -> void:
 func exit() -> void:
 	dauber.get_node("StaticBody3D").collision_layer = 1
 	dauber.get_node("Area3D").collision_layer = 1
+	dauber.get_node("Decal").visible = false
 	
 	dauber_return_area.visible = false
 	dauber_return_area.get_node("Area3D").collision_layer = 0
