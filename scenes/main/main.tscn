@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/states/idle.gd" id="3_mvqf2"]
 [ext_resource type="PackedScene" uid="uid://cica17kyvab1x" path="res://scenes/bingo_machine/bingo_machine.tscn" id="3_t17rl"]
 [ext_resource type="PackedScene" uid="uid://q0vg05xchrml" path="res://scenes/post_processing.tscn" id="4_hvjgh"]
-[ext_resource type="Script" path="res://scripts/states/wait.gd" id="4_nq7ej"]
 [ext_resource type="Script" path="res://scripts/states/marking.gd" id="5_a3l7h"]
 [ext_resource type="Script" path="res://scripts/input_manager.gd" id="6_1yex1"]
 [ext_resource type="Script" path="res://scripts/states/player_turn.gd" id="6_xv3er"]
@@ -160,6 +159,9 @@ _data = {
 "spin_180": SubResource("Animation_64i88")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbqxt"]
+albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_8170c")
 
@@ -175,9 +177,6 @@ current_state = NodePath("StartTurn")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_mvqf2")
-
-[node name="Disabled" type="Node" parent="StateMachine"]
-script = ExtResource("4_nq7ej")
 
 [node name="Marking" type="Node" parent="StateMachine"]
 script = ExtResource("5_a3l7h")
@@ -241,6 +240,7 @@ visible = false
 [node name="Pedestal" type="CSGCylinder3D" parent="Entities"]
 radius = 0.228528
 height = 1.09734
+material = SubResource("StandardMaterial3D_mbqxt")
 
 [node name="BingoMachine" parent="Entities/Pedestal" instance=ExtResource("3_t17rl")]
 unique_name_in_owner = true

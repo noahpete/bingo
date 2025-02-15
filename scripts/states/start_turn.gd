@@ -13,11 +13,12 @@ func enter() -> void:
 	await bingo_machine.play_animation("spin")
 	await bingo_machine.play_animation("dispense")
 	
-	animation_player.play("idle_to_display_ball")
-	await animation_player.animation_finished
-	await %Util.wait(BALL_DISPLAY_TIME)
-	animation_player.play_backwards("idle_to_display_ball")
-	await animation_player.animation_finished
+	if GameData.is_player_turn:
+		animation_player.play("idle_to_display_ball")
+		await animation_player.animation_finished
+		await %Util.wait(BALL_DISPLAY_TIME)
+		animation_player.play_backwards("idle_to_display_ball")
+		await animation_player.animation_finished
 	
 	if GameData.is_player_turn:
 		transition.emit("PlayerTurn")

@@ -18,7 +18,7 @@ func _ready() -> void:
 func _on_end_turn_button_pressed() -> void:
 	animation_player.play("spin_180")
 	await animation_player.animation_finished
-	transition.emit("OpponentTurn")
+	transition.emit("StartTurn")
 
 
 func enter() -> void:
