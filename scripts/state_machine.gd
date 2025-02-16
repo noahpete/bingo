@@ -2,11 +2,10 @@ extends Node
 class_name StateMachine
 
 @export var current_state: State
+# TODO: --> current_states: Array[State]
 
 var states: Dictionary = {}
 var previous_state: State = null
-
-# TODO: concurrent state management
 
 
 func _ready() -> void:
