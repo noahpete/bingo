@@ -4,7 +4,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqs7q"]
 shader = ExtResource("1_54qrt")
-shader_parameter/levels = 8.0
+shader_parameter/levels = 16.0
 
 [node name="PostProcessing" type="CanvasLayer"]
 
