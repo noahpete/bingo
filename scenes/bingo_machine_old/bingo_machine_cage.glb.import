@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c147iu6str244"
-path="res://.godot/imported/bingo_machine_selector.glb-22f470a3862548d59d28708dfc2474e9.scn"
+uid="uid://dq1hupr76y2wa"
+path="res://.godot/imported/bingo_machine_cage.glb-3c9499e16557037d8e759be42875422e.scn"
 
 [deps]
 
-source_file="res://scenes/bingo_machine/bingo_machine_selector.glb"
-dest_files=["res://.godot/imported/bingo_machine_selector.glb-22f470a3862548d59d28708dfc2474e9.scn"]
+source_file="res://scenes/bingo_machine_old/bingo_machine_cage.glb"
+dest_files=["res://.godot/imported/bingo_machine_cage.glb-3c9499e16557037d8e759be42875422e.scn"]
 
 [params]
 

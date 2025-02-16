@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=4 uid="uid://cica17kyvab1x"]
 
-[ext_resource type="Script" path="res://scenes/bingo_machine/bingo_machine.gd" id="1_01qst"]
-[ext_resource type="PackedScene" uid="uid://b685krxhbrmuq" path="res://scenes/bingo_machine/bingo_machine_base.glb" id="1_o402f"]
-[ext_resource type="PackedScene" uid="uid://bv27duav3ah6w" path="res://scenes/bingo_machine/bingo_machine_selector.tscn" id="5_5xtm4"]
+[ext_resource type="Script" path="res://scenes/bingo_machine_old/bingo_machine.gd" id="1_01qst"]
+[ext_resource type="PackedScene" uid="uid://b685krxhbrmuq" path="res://scenes/bingo_machine_old/bingo_machine_base.glb" id="1_o402f"]
+[ext_resource type="PackedScene" uid="uid://bv27duav3ah6w" path="res://scenes/bingo_machine_old/bingo_machine_selector.tscn" id="5_5xtm4"]
 [ext_resource type="PackedScene" uid="uid://djsu373ir63s4" path="res://scenes/ball/bingo_ball_mesh.tscn" id="5_80orr"]
 [ext_resource type="PackedScene" uid="uid://cmgrd1emqwmey" path="res://scenes/ball/bingo_ball.tscn" id="6_i7t4p"]
 

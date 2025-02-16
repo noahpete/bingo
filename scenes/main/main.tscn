@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://sav0qji0ak0b"]
+[gd_scene load_steps=25 format=3 uid="uid://sav0qji0ak0b"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8170c"]
 [ext_resource type="PackedScene" uid="uid://c4gxvtvav8h1h" path="res://scenes/level/level.tscn" id="1_xm2jn"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_78hol"]
 [ext_resource type="Script" path="res://scripts/states/idle.gd" id="3_mvqf2"]
-[ext_resource type="PackedScene" uid="uid://cica17kyvab1x" path="res://scenes/bingo_machine/bingo_machine.tscn" id="3_t17rl"]
+[ext_resource type="PackedScene" uid="uid://cica17kyvab1x" path="res://scenes/bingo_machine_old/bingo_machine.tscn" id="3_t17rl"]
 [ext_resource type="PackedScene" uid="uid://q0vg05xchrml" path="res://scenes/post_processing.tscn" id="4_hvjgh"]
 [ext_resource type="Script" path="res://scripts/states/marking.gd" id="5_a3l7h"]
 [ext_resource type="Script" path="res://scripts/input_manager.gd" id="6_1yex1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/states/start_turn.gd" id="6_yos5m"]
 [ext_resource type="Script" path="res://scripts/util.gd" id="7_641w3"]
 [ext_resource type="Script" path="res://scripts/states/opponent_turn.gd" id="7_nls3f"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="8_t6evv"]
 [ext_resource type="Script" path="res://scripts/item_manager.gd" id="9_utn3a"]
 [ext_resource type="PackedScene" uid="uid://bn7lutbjru3y0" path="res://scenes/dabber/dabber.tscn" id="10_xjqur"]
 [ext_resource type="PackedScene" uid="uid://h2cal5s5pwdd" path="res://scenes/board/board.tscn" id="11_8rea3"]
@@ -190,6 +191,9 @@ script = ExtResource("6_xv3er")
 [node name="OpponentTurn" type="Node" parent="StateMachine"]
 script = ExtResource("7_nls3f")
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("8_t6evv")
+
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("6_1yex1")
 
@@ -248,9 +252,11 @@ transform = Transform3D(-3.27836e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.27836e-0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayerTurnUI" type="Control" parent="UI"]
 unique_name_in_owner = true
@@ -270,6 +276,21 @@ text = "End Turn"
 [node name="OpponentTurnUI" type="Control" parent="UI"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/OpponentTurnUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 760.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/OpponentTurnUI/CenterContainer"]
+layout_mode = 2

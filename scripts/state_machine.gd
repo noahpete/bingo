@@ -6,6 +6,9 @@ class_name StateMachine
 var states: Dictionary = {}
 var previous_state: State = null
 
+# TODO: concurrent state management
+
+
 func _ready() -> void:
 	for child in get_children():
 		if child is State:

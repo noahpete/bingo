@@ -66,7 +66,10 @@ func input_update(event: InputEvent) -> void:
 			if event.pressed:
 				var result = input_manager.raycast(true, 0b10)
 				if result:
-					transition.emit("PlayerTurn")
+					if GameData.is_player_turn:
+						transition.emit("PlayerTurn")
+					else:
+						transition.emit("OpponentTurn")
 				else:
 					_dab()
 		

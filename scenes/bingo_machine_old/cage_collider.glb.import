@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dp4j372dyvnmw"
-path="res://.godot/imported/cage_collider_thick.glb-5235e8de63d2029fd5b353371e5d95ab.scn"
+uid="uid://d1ct1avjfcp82"
+path="res://.godot/imported/cage_collider.glb-b948e3a20a7597119cbed977abbf2fc2.scn"
 
 [deps]
 
-source_file="res://scenes/bingo_machine/cage_collider_thick.glb"
-dest_files=["res://.godot/imported/cage_collider_thick.glb-5235e8de63d2029fd5b353371e5d95ab.scn"]
+source_file="res://scenes/bingo_machine_old/cage_collider.glb"
+dest_files=["res://.godot/imported/cage_collider.glb-b948e3a20a7597119cbed977abbf2fc2.scn"]
 
 [params]
 
