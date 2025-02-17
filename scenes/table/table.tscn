@@ -1,15 +1,25 @@
-[gd_scene load_steps=6 format=4 uid="uid://cdtty7cbmpnk1"]
+[gd_scene load_steps=8 format=4 uid="uid://cdtty7cbmpnk1"]
 
 [ext_resource type="PackedScene" uid="uid://orr6q0hq54gf" path="res://scenes/table/table.glb" id="1_i46ew"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k11uu"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_darry"]
 load_path = "res://.godot/imported/table_table.png-f8f59ed47c63dbb93c4f81eee80699db.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omp74"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fer8m"]
+noise_type = 0
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vxbu"]
+noise = SubResource("FastNoiseLite_fer8m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3mqf"]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = SubResource("CompressedTexture2D_k11uu")
+albedo_texture = SubResource("CompressedTexture2D_darry")
 roughness = 0.5
+normal_enabled = true
+normal_scale = 0.78
+normal_texture = SubResource("NoiseTexture2D_4vxbu")
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_njqw4"]
@@ -34,7 +44,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 372,
 "index_data": PackedByteArray("oAA5AD4AoACiADkAowBCADoAowCmAEIApQBGAEEApQCpAEYAqABKAEUAqACsAEoAqgBMAEcAqgCuAEwArQBPAEsArQCwAE8AEQBuAAoAEQB0AG4AsQBTAFAAsQCzAFMAtAA7AFQAtACeADsAKgDLADEAKgDIAMsABAA4AA0ABAA8ADgADAA/ABMADAA3AD8AFABDABoAFABAAEMAGwBIACAAGwBEAEgAIQBOACcAIQBJAE4AJgBSAC4AJgBNAFIALQBVADQALQBRAFUANAA9AAUANABVAD0AagCXAGcAagCaAJcANgCBAC8ANgCFAIEAKAB8ACIAKAB+AHwAGAB1ABIAGAB3AHUACwBxAAMACwBvAHEABgCEADUABgBzAIQAMAB/ACkAMACCAH8AHwB4ABkAHwB6AHgAWgBwAFgAWgByAHAAWAB2AF4AWABwAHYAXgB5AGEAXgB2AHkAYQB7AGMAYQB5AHsAYwB9AGUAYwB7AH0AZQCAAGgAZQB9AIAAaACDAGsAaACAAIMAawByAFoAawCDAHIAjgCKAIgAigCYAJsAmACTAJUAkwCOAJEAjgCYAIoAmACOAJMAYgCQAGAAYgCSAJAAXACGAFYAXACMAIYAbQCZAGkAbQCdAJkAZgCUAGQAZgCWAJQAXwCNAF0AXwCPAI0AVwCJAFkAVwCHAIkAWwCcAGwAWwCLAJwABwCfAAEABwChAJ8ADgChAAcADgCkAKEAFQCkAA4AFQCnAKQAHQCnABUAHQCrAKcAJQCrAB0AJQCvAKsALACvACUALACyAK8AMwCyACwAMwC1ALIAAQC1ADMAAQCfALUAzQC5ALcAuQC/ALwAvwDHAMMAxwDNAMoAzQC/ALkAvwDNAMcAHADGACQAHADCAMYAEADBABcAEAC+AMEAAgC6AAgAAgC4ALoAMgC2AAAAMgDMALYAIwDJACsAIwDFAMkAFgDEAB4AFgDAAMQACQC9AA8ACQC7AL0A"),
-"material": SubResource("StandardMaterial3D_omp74"),
+"material": SubResource("StandardMaterial3D_y3mqf"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
