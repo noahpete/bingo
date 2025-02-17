@@ -1,9 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=8 format=3 uid="uid://cqhvmw1kxt00a"]
+
+[ext_resource type="Script" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
+[ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
+[ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
 script/source = "extends Node
 class_name Main
 "
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ysw1q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hhwrx"]
+sky_material = SubResource("ProceduralSkyMaterial_ysw1q")
+
+[sub_resource type="Environment" id="Environment_kueq7"]
+background_mode = 2
+sky = SubResource("Sky_hhwrx")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
+
+[node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("1_nc6yn")
+camera = NodePath("../Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kueq7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level" parent="." instance=ExtResource("1_xm2jn")]
+
+[node name="Table" parent="Level" instance=ExtResource("13_bif50")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 1.1, 1)
