@@ -5,6 +5,4 @@ extends Node
 
 
 func _ready() -> void:
-	await camera_manager.to_idle()
-	await camera_manager.to_dabbing()
-	await camera_manager.to_idle()
+	camera_manager.to_idle()

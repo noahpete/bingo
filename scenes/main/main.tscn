@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=11 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
 [ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
 [ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
+[ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
@@ -42,6 +43,9 @@ environment = SubResource("Environment_kueq7")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872, 1.48183)
+
 [node name="Level" parent="." instance=ExtResource("1_xm2jn")]
 
 [node name="Table" parent="Level" instance=ExtResource("13_bif50")]
@@ -49,5 +53,5 @@ shadow_enabled = true
 [node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
 transform = Transform3D(0.528992, 0, 0, 0, 0.528992, 0, 0, 0, 0.528992, 0.00067988, 0.563972, 0.459728)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872, 1.48183)
+[node name="Machine" parent="Level" instance=ExtResource("6_hdee7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558898, 0)
