@@ -11,22 +11,27 @@ const SINGLE_DIGIT_OFFSET = 4
 
 
 func _ready() -> void:
-	_generate_random_board()
+	_set_board(GameManager.generate_board("player"))
+
 	
-	
-func _generate_random_board() -> void:
-	_generate_column(b, 1, 15)
-	_generate_column(i, 16, 30)
-	_generate_column(n, 31, 45)
-	_generate_column(g, 46, 60)
-	_generate_column(o, 61, 75)
-	
-	
-func _generate_column(node: Control, lo: int, hi: int) -> void:
-	var values := range(lo, hi + 1)
-	for label in node.get_children():
-		var value = values.pick_random()
-		values.remove_at(values.find(value))
-		label.text = str(value)
-		if value < 10:
-			label.position.x += SINGLE_DIGIT_OFFSET
+func _set_board(board) -> void:
+	for j in range(5):
+		b.get_child(j).text = str(board[0][j])
+		_offset_digit(board[0][j], b.get_child(j))
+	for j in range(5):
+		i.get_child(j).text = str(board[1][j])
+		_offset_digit(board[1][j], i.get_child(j))
+	for j in range(5):
+		n.get_child(j).text = str(board[2][j])
+		_offset_digit(board[2][j], n.get_child(j))
+	for j in range(5):
+		g.get_child(j).text = str(board[3][j])
+		_offset_digit(board[3][j], g.get_child(j))
+	for j in range(5):
+		o.get_child(j).text = str(board[4][j])
+		_offset_digit(board[4][j], o.get_child(j))
+
+
+func _offset_digit(value: int, node: Control) -> void:
+	if value < 10:
+		node.position.x += SINGLE_DIGIT_OFFSET

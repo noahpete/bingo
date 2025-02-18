@@ -12,7 +12,7 @@ const DABBING_ROTATION = Vector3(-70.0, 0.0, 0.0)
 const DABBING_FOV = 45.0
 
 @export var camera_3d: Camera3D
-
+	
 
 func move_to(position: Vector3, rotation: Vector3, fov: float) -> void:
 	var position_tween = create_tween()
