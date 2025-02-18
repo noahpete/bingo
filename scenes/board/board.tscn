@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmvhocnreld8e"]
+[gd_scene load_steps=9 format=3 uid="uid://bmvhocnreld8e"]
 
 [ext_resource type="Texture2D" uid="uid://d05wlgoxh6gfg" path="res://scenes/board/board.png" id="1_4w700"]
 [ext_resource type="Script" path="res://scenes/board/board.gd" id="1_tu2am"]
+[ext_resource type="PackedScene" uid="uid://c8apufsnm02mh" path="res://scenes/components/hover/hover_component.tscn" id="3_oudbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxpup"]
+size = Vector3(0.265, 0.025, 0.35)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rx1a7"]
 viewport_path = NodePath("SubViewport")
@@ -20,6 +24,11 @@ data = PackedVector3Array(0.105, 0, 0.1485, -0.105, 0, 0.1485, 0.105, 0, -0.1485
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_tu2am")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_pxpup")
 
 [node name="BoardMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_34oa8")
@@ -335,3 +344,5 @@ offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "11"
+
+[node name="HoverComponent" parent="." instance=ExtResource("3_oudbg")]
