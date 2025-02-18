@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://d24rkovakwpn5"]
+[gd_scene load_steps=4 format=3 uid="uid://d24rkovakwpn5"]
 
 [ext_resource type="PackedScene" uid="uid://b2rd5uw1b7qhw" path="res://scenes/machine/machine_base.glb" id="1_fcthg"]
+[ext_resource type="Script" path="res://scenes/machine/machine.gd" id="2_p3br3"]
 [ext_resource type="PackedScene" uid="uid://li3hsxiwf5kc" path="res://scenes/machine/machine_cage.glb" id="2_u1cpd"]
 
 [node name="Machine" instance=ExtResource("1_fcthg")]
+script = ExtResource("2_p3br3")
 
 [node name="machine_cage" parent="." index="3" instance=ExtResource("2_u1cpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166662, 0.103313, -6.42985e-05)
