@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmvhocnreld8e"]
+[gd_scene load_steps=10 format=3 uid="uid://bmvhocnreld8e"]
 
 [ext_resource type="Texture2D" uid="uid://d05wlgoxh6gfg" path="res://scenes/board/board.png" id="1_4w700"]
 [ext_resource type="Script" path="res://scenes/board/board.gd" id="1_tu2am"]
 [ext_resource type="PackedScene" uid="uid://c8apufsnm02mh" path="res://scenes/components/hover/hover_component.tscn" id="3_oudbg"]
+[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="4_cfejl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxpup"]
 size = Vector3(0.265, 0.025, 0.35)
@@ -346,3 +347,5 @@ theme_override_font_sizes/font_size = 12
 text = "11"
 
 [node name="HoverComponent" parent="." instance=ExtResource("3_oudbg")]
+
+[node name="ClickableComponent" parent="." instance=ExtResource("4_cfejl")]
