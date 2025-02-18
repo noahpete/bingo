@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=20 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4a8fi"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
 [ext_resource type="Script" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
 [ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
+[ext_resource type="Script" path="res://scripts/states/idle.gd" id="2_uhchy"]
+[ext_resource type="Script" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
 [ext_resource type="Script" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
+[ext_resource type="Script" path="res://scripts/signal_manager.gd" id="4_hxr0o"]
 [ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
 [ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
@@ -42,9 +46,22 @@ size = Vector2(0.2, 0.26)
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
 
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_lcsqo")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_uhchy")
+
+[node name="Daubing" type="Node" parent="StateMachine"]
+script = ExtResource("3_kp8lt")
+
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("camera_manager")]
 script = ExtResource("1_4a8fi")
 camera_manager = NodePath("../CameraManager")
+
+[node name="SignalManager" type="Node" parent="."]
+script = ExtResource("4_hxr0o")
 
 [node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera_3d")]
 script = ExtResource("1_nc6yn")

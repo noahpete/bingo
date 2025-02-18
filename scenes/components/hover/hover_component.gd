@@ -8,6 +8,7 @@ extends Node
 @onready var parent: Node3D = $".."
 
 var original_position: Vector3
+var active: bool = true
 
 
 func _ready() -> void:
@@ -18,7 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is not InputEventMouseMotion:
 		return
 	var result = camera_3d.raycast_areas()
-	if result and result.collider.get_parent() == parent:
+	if result and active and result.collider.get_parent() == parent:
 		_hover()
 	else:
 		_unhover()
