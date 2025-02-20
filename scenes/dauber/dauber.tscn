@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://brusjvf7wovcw"]
+[gd_scene load_steps=12 format=4 uid="uid://brusjvf7wovcw"]
 
 [ext_resource type="PackedScene" uid="uid://bppexsp5e1hmn" path="res://scenes/dauber/dauber.glb" id="1_gag4o"]
 [ext_resource type="Texture2D" uid="uid://bk64yufbriqop" path="res://scenes/dauber/dauber_dabber_low_res.png" id="2_ieang"]
+[ext_resource type="Script" path="res://scenes/dauber/dauber.gd" id="2_x5a6o"]
+[ext_resource type="Texture2D" uid="uid://cmcgj1v0uoicg" path="res://scenes/dauber/x.png" id="3_5p1rj"]
+[ext_resource type="PackedScene" uid="uid://crxxuxmwup6xc" path="res://scenes/dauber/dabs/dab.tscn" id="3_8lbai"]
 [ext_resource type="PackedScene" uid="uid://c8apufsnm02mh" path="res://scenes/components/hover/hover_component.tscn" id="3_35l2e"]
 [ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="4_61u82"]
 
@@ -49,6 +52,8 @@ radius = 0.0323588
 height = 0.171821
 
 [node name="Dauber" instance=ExtResource("1_gag4o")]
+script = ExtResource("2_x5a6o")
+dab_scene = ExtResource("3_8lbai")
 
 [node name="Dauber" parent="." index="0"]
 mesh = SubResource("ArrayMesh_n2uux")
@@ -59,6 +64,15 @@ mesh = SubResource("ArrayMesh_n2uux")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00774789, 0)
 shape = SubResource("CapsuleShape3D_n8pny")
 
-[node name="HoverComponent" parent="." index="2" instance=ExtResource("3_35l2e")]
+[node name="Decal" type="Decal" parent="." index="2"]
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 0, 0.100514, 0)
+visible = false
+size = Vector3(0.05, 0.06, 0.05)
+texture_albedo = ExtResource("3_5p1rj")
 
-[node name="ClickableComponent" parent="." index="3" instance=ExtResource("4_61u82")]
+[node name="RayCast3D" type="RayCast3D" parent="." index="3"]
+target_position = Vector3(0, 0.1, 0)
+
+[node name="HoverComponent" parent="." index="4" instance=ExtResource("3_35l2e")]
+
+[node name="ClickableComponent" parent="." index="5" instance=ExtResource("4_61u82")]
