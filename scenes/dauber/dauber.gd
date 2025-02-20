@@ -17,17 +17,18 @@ var original_position: Vector3
 func _ready() -> void:
 	original_position = position
 
+
+func _process(delta: float) -> void:
+	Global.debug.add_property("Dauber Y", position.y, 1)
+
+
 func dab() -> void:
 	await _dab_animation()
-	
-	var result = ray_cast_3d.get_collider()
-	if not result:
-		print("NO RESULT WOMP WOMP")
+	if not ray_cast_3d.get_collider():
 		return
-	print("instantiating dab")
-	var dab = dab_scene.instantiate()
-	dab_parent.add_child(dab)
-	dab.position = ray_cast_3d.get_collision_point()
+	var dab_instance = dab_scene.instantiate()
+	dab_parent.add_child(dab_instance)
+	dab_instance.position = ray_cast_3d.get_collision_point()
 	
 	
 func _dab_animation() -> void:

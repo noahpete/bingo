@@ -9,6 +9,7 @@
 
 [node name="Dab" type="Node3D"]
 script = ExtResource("1_edlyy")
+dab_color = Color(0.207843, 0.462745, 1, 0.854902)
 dabs = Array[Texture2D]([ExtResource("2_exjou"), ExtResource("3_2g3hr"), ExtResource("4_vnfjb"), ExtResource("5_rhee8"), ExtResource("6_x2cal")])
 
 [node name="Decal" type="Decal" parent="."]
