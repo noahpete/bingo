@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=21 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://scripts/states/idle.gd" id="2_uhchy"]
 [ext_resource type="Script" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
 [ext_resource type="Script" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
-[ext_resource type="Script" path="res://scripts/signal_manager.gd" id="4_hxr0o"]
 [ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
 [ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
+[ext_resource type="Script" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
@@ -32,7 +32,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xrpen"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Level/Board/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vds5o"]
 resource_local_to_scene = true
@@ -42,6 +42,10 @@ albedo_texture = SubResource("ViewportTexture_xrpen")
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_vds5o")
 size = Vector2(0.2, 0.26)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
+radius = 0.0361855
+height = 0.164304
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
@@ -59,9 +63,6 @@ script = ExtResource("3_kp8lt")
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("camera_manager")]
 script = ExtResource("1_4a8fi")
 camera_manager = NodePath("../CameraManager")
-
-[node name="SignalManager" type="Node" parent="."]
-script = ExtResource("4_hxr0o")
 
 [node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera_3d")]
 script = ExtResource("1_nc6yn")
@@ -94,20 +95,46 @@ transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.564, 0.46)
 [node name="BoardMesh" parent="Level/Board" index="1"]
 mesh = SubResource("PlaneMesh_lmn4p")
 
-[node name="HoverComponent" parent="Level/Board" index="3" node_paths=PackedStringArray("camera_3d")]
+[node name="Dauber" parent="Level" node_paths=PackedStringArray("dab_parent") instance=ExtResource("8_1ne22")]
+transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.473522)
+dab_parent = NodePath("../Dabs")
+
+[node name="HoverComponent" parent="Level/Dauber" index="4" node_paths=PackedStringArray("camera_3d")]
 camera_3d = NodePath("../../../Camera3D")
 
-[node name="ClickableComponent" parent="Level/Board" index="4" node_paths=PackedStringArray("camera_3d")]
+[node name="ClickableComponent" parent="Level/Dauber" index="5" node_paths=PackedStringArray("camera_3d")]
 camera_3d = NodePath("../../../Camera3D")
 
-[node name="Dauber" parent="Level" instance=ExtResource("8_1ne22")]
-transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, 0.167578, 0.583676, 0.473522)
+[node name="Dabs" type="Node3D" parent="Level"]
 
-[node name="HoverComponent" parent="Level/Dauber" index="2" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
+[node name="DauberReturnArea" type="Area3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
 
-[node name="ClickableComponent" parent="Level/Dauber" index="3" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/DauberReturnArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0738774, -0.0353985, 0.0978817)
+shape = SubResource("CapsuleShape3D_i00rj")
+disabled = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugPanel" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 130.0
+offset_bottom = 50.0
+script = ExtResource("12_v3y3y")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugPanel/MarginContainer"]
+layout_mode = 2
 
 [editable path="Level/Board"]
 [editable path="Level/Dauber"]
