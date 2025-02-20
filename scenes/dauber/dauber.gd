@@ -10,8 +10,10 @@ const DAUBER_DAB_TIME := 0.05
 @export var dab_parent: Node3D
 
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@onready var dauber_mesh: MeshInstance3D = $Dauber
 
 var original_position: Vector3
+var opacity_tween: Tween
 
 
 func _ready() -> void:
@@ -19,7 +21,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	Global.debug.add_property("Dauber Y", position.y, 1)
+	_handle_dimming()
 
 
 func dab() -> void:
@@ -48,3 +50,23 @@ func _dab_animation() -> void:
 		original_position.y + DAUBER_HOVER_HEIGHT,
 		DAUBER_DAB_SPEED
 	)
+
+
+func _handle_dimming() -> void:
+	var result = ray_cast_3d.get_collider()
+	var material = dauber_mesh.get_active_material(0)
+	
+	if not material:
+		return
+	
+	if opacity_tween and opacity_tween.is_running():
+		opacity_tween.kill()
+
+	opacity_tween = create_tween()
+
+	if result and result.get_parent().get_parent() is Board:
+		opacity_tween.tween_property(material, "albedo_color:a", 0.2, 0.1)
+	else:
+		opacity_tween.tween_property(material, "albedo_color:a", 1.0, 0.1)
+	
+	
