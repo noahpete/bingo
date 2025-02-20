@@ -91,7 +91,7 @@ func _rotate_dauber_down() -> void:
 
 
 func _handle_dauber_return() -> void:
-	var result = camera_3d.raycast_areas()
+	var result = camera_3d.raycast_areas(2)
 	
 	is_hovering_over_return = result and result.collider == dauber_return_area
 	

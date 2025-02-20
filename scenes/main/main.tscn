@@ -44,7 +44,7 @@ material = SubResource("StandardMaterial3D_vds5o")
 size = Vector2(0.2, 0.26)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
-radius = 0.0361855
+radius = 0.0266957
 height = 0.164304
 
 [node name="Main" type="Node"]
@@ -109,6 +109,7 @@ camera_3d = NodePath("../../../Camera3D")
 
 [node name="DauberReturnArea" type="Area3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/DauberReturnArea"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0738774, -0.0353985, 0.0978817)
