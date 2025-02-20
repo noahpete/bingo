@@ -6,10 +6,6 @@ extends Node
 static var boards: Dictionary = {}
 
 
-func _ready() -> void:
-	camera_manager.to_idle()
-
-
 static func generate_board(player: String):
 	var b_col = _generate_column(1, 15)
 	var i_col = _generate_column(16, 30)
