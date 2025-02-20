@@ -7,9 +7,9 @@ const IDLE_POSITION = Vector3(0.0, 1.1, 1.05)
 const IDLE_ROTATION = Vector3(-20.0, 0.0, 0.0)
 const IDLE_FOV = 65.0
 
-const DABBING_POSITION = Vector3(0.0, 0.872, 0.55)
-const DABBING_ROTATION = Vector3(-70.0, 0.0, 0.0)
-const DABBING_FOV = 45.0
+const DAUBING_POSITION = Vector3(0.0, 0.9, 0.65)
+const DAUBING_ROTATION = Vector3(-50.0, 0.0, 0.0)
+const DAUBING_FOV = 45.0
 
 @export var camera_3d: Camera3D
 	
@@ -32,5 +32,5 @@ func to_idle() -> void:
 	await move_to(IDLE_POSITION, IDLE_ROTATION, IDLE_FOV)
 
 
-func to_dabbing() -> void:
-	await move_to(DABBING_POSITION, DABBING_ROTATION, DABBING_FOV)
+func to_daubing() -> void:
+	await move_to(DAUBING_POSITION, DAUBING_ROTATION, DAUBING_FOV)
