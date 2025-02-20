@@ -14,6 +14,6 @@ dab_color = Color(0.207843, 0.462745, 1, 0.854902)
 dabs = Array[Texture2D]([ExtResource("2_exjou"), ExtResource("3_2g3hr"), ExtResource("4_vnfjb"), ExtResource("5_rhee8"), ExtResource("6_x2cal")])
 
 [node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0, -0.001)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.002, 0, -0.001)
 size = Vector3(0.02, 0.02, 0.02)
 texture_albedo = ExtResource("2_exjou")
