@@ -27,7 +27,7 @@ func enter() -> void:
 	_rotate_dauber_upright()
 	
 	is_animating = true
-	await camera_manager.to_daubing()
+	camera_manager.to_daubing()
 	dauber.position.y = dauber.original_position.y + DAUBER_HOVER_HEIGHT
 	is_animating = false
 	
@@ -35,24 +35,32 @@ func enter() -> void:
 
 
 func exit() -> void:
+	_reset_flags()
 	_rotate_dauber_down()
 	dauber_return_area.get_node("CollisionShape3D").disabled = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func update(delta: float) -> void:
+	if not is_active_state:
+		return
 	_move_dauber_to_mouse()
 	_handle_dauber_return()
 	
 
 func input(event: InputEvent) -> void:
-	if is_animating:
+	if is_animating or not is_active_state:
 		return
 	if event.is_action_pressed("select"):
 		if is_hovering_over_return:
 			transition.emit("Idle")
 		else:
 			dauber.dab()
+			
+			
+func _reset_flags() -> void:
+	is_animating = false
+	is_hovering_over_return = false
 
 
 func _move_dauber_to_mouse() -> void:
@@ -94,7 +102,7 @@ func _handle_dauber_return() -> void:
 	var result = camera_3d.raycast_areas(2)
 	
 	is_hovering_over_return = result and result.collider == dauber_return_area
-	
+		
 	if result and result.collider == dauber_return_area:
 		var tween = create_tween()
 		tween.tween_property(dauber, "position", dauber.original_position, DAUBER_RETURN_SPEED)
