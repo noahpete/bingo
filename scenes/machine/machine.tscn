@@ -7,5 +7,5 @@
 [node name="Machine" instance=ExtResource("1_fcthg")]
 script = ExtResource("2_p3br3")
 
-[node name="machine_cage" parent="." index="3" instance=ExtResource("2_u1cpd")]
+[node name="Cage" parent="." index="3" instance=ExtResource("2_u1cpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166662, 0.103313, -6.42985e-05)
