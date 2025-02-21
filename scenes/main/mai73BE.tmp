@@ -1,0 +1,165 @@
+[gd_scene load_steps=23 format=3 uid="uid://cqhvmw1kxt00a"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4a8fi"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
+[ext_resource type="Script" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
+[ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
+[ext_resource type="Script" path="res://scripts/states/idle.gd" id="2_uhchy"]
+[ext_resource type="Script" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
+[ext_resource type="Script" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
+[ext_resource type="Script" path="res://scripts/states/turn_start.gd" id="4_civ8h"]
+[ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
+[ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
+[ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
+[ext_resource type="PackedScene" uid="uid://cgedrmpr11f4a" path="res://scenes/button/button.tscn" id="12_kscwr"]
+[ext_resource type="Script" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
+[ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
+
+[sub_resource type="GDScript" id="GDScript_e73j7"]
+script/source = "class_name Main
+extends Node
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ysw1q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hhwrx"]
+sky_material = SubResource("ProceduralSkyMaterial_ysw1q")
+
+[sub_resource type="Environment" id="Environment_kueq7"]
+background_mode = 2
+sky = SubResource("Sky_hhwrx")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xrpen"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vds5o"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_xrpen")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lmn4p"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vds5o")
+size = Vector2(0.2, 0.26)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
+radius = 0.0266957
+height = 0.164304
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_e73j7")
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_lcsqo")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("2_uhchy")
+
+[node name="Daubing" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("3_kp8lt")
+
+[node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_lcsqo")
+current_state = NodePath("TurnStart")
+
+[node name="TurnStart" type="Node" parent="GameStateMachine"]
+script = ExtResource("4_civ8h")
+
+[node name="TurnEnd" type="Node" parent="GameStateMachine"]
+
+[node name="PlayerTurn" type="Node" parent="GameStateMachine"]
+
+[node name="OpponentTurn" type="Node" parent="GameStateMachine"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_4a8fi")
+
+[node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera_3d")]
+script = ExtResource("1_nc6yn")
+camera_3d = NodePath("../Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kueq7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872, 1.48183)
+script = ExtResource("3_vgubw")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -1)
+
+[node name="Level" parent="." instance=ExtResource("1_xm2jn")]
+
+[node name="Table" parent="Level" instance=ExtResource("13_bif50")]
+
+[node name="Machine" parent="Level" instance=ExtResource("6_hdee7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558898, 0)
+
+[node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.564, 0.46)
+
+[node name="BoardMesh" parent="Level/Board" index="1"]
+mesh = SubResource("PlaneMesh_lmn4p")
+
+[node name="Dauber" parent="Level" node_paths=PackedStringArray("dab_parent") instance=ExtResource("8_1ne22")]
+transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.473522)
+dab_parent = NodePath("../Dabs")
+
+[node name="HoverComponent" parent="Level/Dauber" index="4" node_paths=PackedStringArray("camera_3d")]
+camera_3d = NodePath("../../../Camera3D")
+
+[node name="ClickableComponent" parent="Level/Dauber" index="5" node_paths=PackedStringArray("camera_3d")]
+camera_3d = NodePath("../../../Camera3D")
+
+[node name="Dabs" type="Node3D" parent="Level"]
+
+[node name="DauberReturnArea" type="Area3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/DauberReturnArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0738774, -0.0353985, 0.0978817)
+shape = SubResource("CapsuleShape3D_i00rj")
+disabled = true
+
+[node name="Button" parent="Level" instance=ExtResource("12_kscwr")]
+transform = Transform3D(0.727289, 0, 0, 0, 0.727289, 0, 0, 0, 0.727289, -0.158644, 0.566423, 0.511017)
+
+[node name="Press" parent="Level/Button" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="ClickableComponent" parent="Level/Button" index="3" node_paths=PackedStringArray("camera_3d")]
+camera_3d = NodePath("../../../Camera3D")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugPanel" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 130.0
+offset_bottom = 50.0
+script = ExtResource("12_v3y3y")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugPanel/MarginContainer"]
+layout_mode = 2
+
+[editable path="Level/Board"]
+[editable path="Level/Dauber"]
+[editable path="Level/Button"]

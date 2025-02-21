@@ -22,13 +22,10 @@ var is_hovering_over_return: bool = false
 func _ready() -> void:
 	dauber_original_rotation = dauber.rotation
 	
-func _process(delta: float) -> void:
-	Global.debug.add_property("is over return", is_hovering_over_return, 1)
 	
 func enter() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
-	dauber.get_node("HoverComponent").active = false
 	_rotate_dauber_upright()
 	
 	is_animating = true
@@ -40,7 +37,6 @@ func enter() -> void:
 
 
 func exit() -> void:
-	dauber.get_node("HoverComponent").active = true
 	_rotate_dauber_down()
 	dauber_return_area.get_node("CollisionShape3D").disabled = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

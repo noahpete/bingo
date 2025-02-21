@@ -2,23 +2,24 @@ class_name IdleState
 extends State
 
 @onready var camera_manager: CameraManager = $"../../CameraManager"
-@onready var dauber_clickable_component: ClickableComponent = $"../../Level/Dauber/ClickableComponent"
-@onready var dauber_hover_component: HoverComponent = $"../../Level/Dauber/HoverComponent"
+@onready var dauber: Dauber = $"../../Level/Dauber"
 
 
 func _ready() -> void:
-	dauber_clickable_component.clicked.connect(_to_daubing_state)
+	dauber.get_node("ClickableComponent").clicked.connect(_to_daubing_state)
 
 
 func enter() -> void:
-	dauber_hover_component.active = false
+	dauber.get_node("Decal").visible = false
+	dauber.get_node("HoverComponent").active = false
 	camera_manager.to_idle()
 	await get_tree().create_timer(0.1).timeout
-	dauber_hover_component.active = true
+	dauber.get_node("HoverComponent").active = true
 	
 
 func exit() -> void:
-	dauber_hover_component.active = false
+	dauber.get_node("HoverComponent").active = false
+	dauber.get_node("HoverComponent").active = false
 	
 
 func _to_daubing_state() -> void:
