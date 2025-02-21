@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgedrmpr11f4a"]
+
+[ext_resource type="Script" path="res://scenes/button/button.gd" id="1_aonjn"]
+[ext_resource type="PackedScene" uid="uid://c03xkrw4e6wk3" path="res://scenes/button/button_base.tscn" id="1_jmmgm"]
+[ext_resource type="PackedScene" uid="uid://63587ctkrvj6" path="res://scenes/button/button_press.tscn" id="2_fw5uy"]
+[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="3_yfh4i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ng1ix"]
+height = 0.075293
+radius = 0.0619832
+
+[node name="Button" type="Node3D"]
+script = ExtResource("1_aonjn")
+
+[node name="Base" parent="." instance=ExtResource("1_jmmgm")]
+
+[node name="Press" parent="." instance=ExtResource("2_fw5uy")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ng1ix")
+
+[node name="ClickableComponent" parent="." instance=ExtResource("3_yfh4i")]
