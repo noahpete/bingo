@@ -30,6 +30,7 @@ script = ExtResource("1_tu2am")
 shape = SubResource("BoxShape3D_pxpup")
 
 [node name="BoardMesh" type="MeshInstance3D" parent="."]
+layers = 3
 mesh = SubResource("PlaneMesh_34oa8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BoardMesh"]

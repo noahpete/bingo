@@ -68,6 +68,7 @@ transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 
 visible = false
 size = Vector3(0.05, 0.06, 0.05)
 texture_albedo = ExtResource("3_5p1rj")
+cull_mask = 2
 
 [node name="RayCast3D" type="RayCast3D" parent="." index="3"]
 target_position = Vector3(0, 0.1, 0)
