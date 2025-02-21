@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://crxxuxmwup6xc"]
 
-[ext_resource type="Script" path="res://scenes/dauber/dabs/dab.gd" id="1_edlyy"]
+[ext_resource type="Script" uid="uid://cpa7ewcd7dloi" path="res://scenes/dauber/dabs/dab.gd" id="1_edlyy"]
 [ext_resource type="Texture2D" uid="uid://d4mu26k72ix1o" path="res://scenes/dauber/dabs/dab0.png" id="2_exjou"]
 [ext_resource type="Texture2D" uid="uid://bjrpriwv7it0u" path="res://scenes/dauber/dabs/dab1.png" id="3_2g3hr"]
 [ext_resource type="Texture2D" uid="uid://dmthj68shg7p6" path="res://scenes/dauber/dabs/dab2.png" id="4_vnfjb"]

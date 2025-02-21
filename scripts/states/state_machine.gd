@@ -37,8 +37,10 @@ func _on_child_transition(new_state_name: StringName) -> void:
 	var new_state = states.get(new_state_name)
 	if new_state:
 		if new_state != current_state:
-			print("Transitioning from [" + current_state.name + "] to [" + new_state.name + "]")
+			print("[" + self.name + "]: " + "Transitioning from [" + current_state.name + "] to [" + new_state.name + "]")
 			current_state.exit()
+			current_state.is_active_state = false
+			new_state.is_active_state = true
 			new_state.enter()
 			previous_state = current_state
 			current_state = new_state

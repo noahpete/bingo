@@ -1,18 +1,21 @@
-[gd_scene load_steps=23 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=26 format=3 uid="uid://cqhvmw1kxt00a"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4a8fi"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
-[ext_resource type="Script" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
+[ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
+[ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
+[ext_resource type="Script" uid="uid://b446a22e5ujc5" path="res://scripts/camera_manager.gd" id="1_nc6yn"]
 [ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
-[ext_resource type="Script" path="res://scripts/states/idle.gd" id="2_uhchy"]
-[ext_resource type="Script" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
-[ext_resource type="Script" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
-[ext_resource type="Script" path="res://scripts/states/turn_start.gd" id="4_civ8h"]
+[ext_resource type="Script" uid="uid://dawtlnm017d1t" path="res://scripts/states/idle.gd" id="2_uhchy"]
+[ext_resource type="Script" uid="uid://cklbymayheyne" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
+[ext_resource type="Script" uid="uid://cdw58brstq20t" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
+[ext_resource type="Script" uid="uid://03wied83i7b3" path="res://scripts/states/turn_start.gd" id="4_civ8h"]
 [ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
+[ext_resource type="Script" uid="uid://cy6vl0mxuml73" path="res://scripts/states/turn_end.gd" id="5_gpcwx"]
+[ext_resource type="Script" uid="uid://cdvtecqscm8ky" path="res://scripts/states/player_turn.gd" id="6_gcu1f"]
 [ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
+[ext_resource type="Script" uid="uid://obkjkok1dmx1" path="res://scripts/states/opponent_turn.gd" id="7_cvijt"]
 [ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
 [ext_resource type="PackedScene" uid="uid://cgedrmpr11f4a" path="res://scenes/button/button.tscn" id="12_kscwr"]
-[ext_resource type="Script" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
+[ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
@@ -34,7 +37,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xrpen"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Level/Board/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vds5o"]
 resource_local_to_scene = true
@@ -70,10 +73,13 @@ current_state = NodePath("TurnStart")
 script = ExtResource("4_civ8h")
 
 [node name="TurnEnd" type="Node" parent="GameStateMachine"]
+script = ExtResource("5_gpcwx")
 
 [node name="PlayerTurn" type="Node" parent="GameStateMachine"]
+script = ExtResource("6_gcu1f")
 
 [node name="OpponentTurn" type="Node" parent="GameStateMachine"]
+script = ExtResource("7_cvijt")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_4a8fi")
@@ -132,9 +138,6 @@ disabled = true
 
 [node name="Button" parent="Level" instance=ExtResource("12_kscwr")]
 transform = Transform3D(0.727289, 0, 0, 0, 0.727289, 0, 0, 0, 0.727289, -0.158644, 0.566423, 0.511017)
-
-[node name="Press" parent="Level/Button" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ClickableComponent" parent="Level/Button" index="3" node_paths=PackedStringArray("camera_3d")]
 camera_3d = NodePath("../../../Camera3D")

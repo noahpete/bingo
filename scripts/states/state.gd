@@ -3,6 +3,8 @@ extends Node
 
 signal transition(new_state_name: StringName)
 
+var is_active_state: bool = false
+
 
 ## Called just after a state transition to this state.
 func enter() -> void:

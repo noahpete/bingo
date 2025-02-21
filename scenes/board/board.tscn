@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmvhocnreld8e"]
 
 [ext_resource type="Texture2D" uid="uid://d05wlgoxh6gfg" path="res://scenes/board/board.png" id="1_4w700"]
-[ext_resource type="Script" path="res://scenes/board/board.gd" id="1_tu2am"]
+[ext_resource type="Script" uid="uid://h8gfv88ib1kk" path="res://scenes/board/board.gd" id="1_tu2am"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxpup"]
 size = Vector3(0.265, 0.025, 0.35)
@@ -343,3 +343,5 @@ offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "11"
+
+[node name="Node" type="Node" parent="."]

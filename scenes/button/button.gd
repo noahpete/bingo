@@ -1,4 +1,4 @@
-class_name ButtonProp
+class_name Button3D
 extends Node3D
 
 const BUTTON_PRESS_HEIGHT = 0.01
