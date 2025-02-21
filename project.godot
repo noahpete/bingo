@@ -50,6 +50,7 @@ select={
 
 [layer_names]
 
+3d_render/layer_2="DauberDecal"
 3d_physics/layer_2="DauberReturnArea"
 
 [physics]

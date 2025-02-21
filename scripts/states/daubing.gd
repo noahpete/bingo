@@ -6,12 +6,10 @@ const DAUBER_MOVE_SPEED := 0.02
 const DAUBER_ROTATE_SPEED := 0.4
 const DAUBER_RETURN_SPEED := 0.1
 
-@export var dab_scene: PackedScene
-
-@onready var camera_3d: Camera3DRaycast = $"../../Camera3D"
-@onready var camera_manager: CameraManager = $"../../CameraManager"
-@onready var dauber: Dauber = $"../../Level/Dauber"
-@onready var dauber_return_area: Area3D = $"../../Level/DauberReturnArea"
+@export var camera_3d: Camera3DRaycast
+@export var camera_manager: CameraManager
+@export var dauber: Dauber
+@export var dauber_return_area: Area3D
 
 var dauber_original_rotation: Vector3
 

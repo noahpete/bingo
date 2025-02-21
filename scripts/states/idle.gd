@@ -1,8 +1,8 @@
 class_name IdleState
 extends State
 
-@onready var camera_manager: CameraManager = $"../../CameraManager"
-@onready var dauber: Dauber = $"../../Level/Dauber"
+@export var camera_manager: CameraManager
+@export var dauber: Dauber
 
 
 func _ready() -> void:

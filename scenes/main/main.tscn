@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=28 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cgedrmpr11f4a" path="res://scenes/button/button.tscn" id="12_kscwr"]
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
+[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="14_ou6is"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
 script/source = "class_name Main
@@ -36,6 +37,14 @@ sky = SubResource("Sky_hhwrx")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
+radius = 0.0266957
+height = 0.164304
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nvumn"]
+radius = 0.0827093
+height = 0.224197
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_xrpen"]
 viewport_path = NodePath("Level/Board/SubViewport")
 
@@ -48,10 +57,6 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_vds5o")
 size = Vector2(0.2, 0.26)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
-radius = 0.0266957
-height = 0.164304
-
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
 
@@ -59,24 +64,37 @@ script = SubResource("GDScript_e73j7")
 script = ExtResource("1_lcsqo")
 current_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine"]
+[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_manager", "dauber")]
 script = ExtResource("2_uhchy")
+camera_manager = NodePath("../../CameraManager")
+dauber = NodePath("../../Level/Dauber")
 
-[node name="Daubing" type="Node" parent="PlayerStateMachine"]
+[node name="Daubing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_3d", "camera_manager", "dauber", "dauber_return_area")]
 script = ExtResource("3_kp8lt")
+camera_3d = NodePath("../../Camera3D")
+camera_manager = NodePath("../../CameraManager")
+dauber = NodePath("../../Level/Dauber")
+dauber_return_area = NodePath("../../Level/Table/DauberReturnArea")
 
 [node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("1_lcsqo")
 current_state = NodePath("TurnStart")
 
-[node name="TurnStart" type="Node" parent="GameStateMachine"]
+[node name="TurnStart" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager", "camera_manager", "machine")]
 script = ExtResource("4_civ8h")
+game_manager = NodePath("../../GameManager")
+camera_manager = NodePath("../../CameraManager")
+machine = NodePath("../../Level/Machine")
 
-[node name="TurnEnd" type="Node" parent="GameStateMachine"]
+[node name="TurnEnd" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager")]
 script = ExtResource("5_gpcwx")
+game_manager = NodePath("../../GameManager")
 
-[node name="PlayerTurn" type="Node" parent="GameStateMachine"]
+[node name="PlayerTurn" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("player_state_machine", "game_state_machine", "button")]
 script = ExtResource("6_gcu1f")
+player_state_machine = NodePath("../../PlayerStateMachine")
+game_state_machine = NodePath("..")
+button = NodePath("../../Level/Button")
 
 [node name="OpponentTurn" type="Node" parent="GameStateMachine"]
 script = ExtResource("7_cvijt")
@@ -101,13 +119,33 @@ script = ExtResource("3_vgubw")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1)
+debug_shape_thickness = 1
 
 [node name="Level" parent="." instance=ExtResource("1_xm2jn")]
 
 [node name="Table" parent="Level" instance=ExtResource("13_bif50")]
 
+[node name="DauberReturnArea" type="Area3D" parent="Level/Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Table/DauberReturnArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0738774, -0.0353985, 0.0978817)
+shape = SubResource("CapsuleShape3D_i00rj")
+disabled = true
+
 [node name="Machine" parent="Level" instance=ExtResource("6_hdee7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558898, 0)
+
+[node name="ControlArea" type="Area3D" parent="Level/Machine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00213632, 0.0107808, 0.171151)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Machine/ControlArea"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_nvumn")
+
+[node name="ClickableComponent" parent="Level/Machine" node_paths=PackedStringArray("camera_3d") instance=ExtResource("14_ou6is")]
+camera_3d = NodePath("../../../Camera3D")
 
 [node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
 transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.564, 0.46)
@@ -126,15 +164,6 @@ camera_3d = NodePath("../../../Camera3D")
 camera_3d = NodePath("../../../Camera3D")
 
 [node name="Dabs" type="Node3D" parent="Level"]
-
-[node name="DauberReturnArea" type="Area3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/DauberReturnArea"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0738774, -0.0353985, 0.0978817)
-shape = SubResource("CapsuleShape3D_i00rj")
-disabled = true
 
 [node name="Button" parent="Level" instance=ExtResource("12_kscwr")]
 transform = Transform3D(0.727289, 0, 0, 0, 0.727289, 0, 0, 0, 0.727289, -0.158644, 0.566423, 0.511017)

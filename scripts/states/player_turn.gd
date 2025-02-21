@@ -1,9 +1,9 @@
 class_name PlayerTurnState
 extends State
 
-@onready var player_state_machine: StateMachine = $"../../PlayerStateMachine"
-@onready var game_state_machine: StateMachine = $".."
-@onready var button: Button3D = $"../../Level/Button"
+@export var player_state_machine: StateMachine
+@export var game_state_machine: StateMachine
+@export var button: Button3D
 
 
 func _ready() -> void:

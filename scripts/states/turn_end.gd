@@ -1,7 +1,7 @@
 class_name TurnEndState
 extends State
 
-@onready var game_manager: GameManager = $"../../GameManager"
+@export var game_manager: GameManager
 
 
 func enter() -> void:
