@@ -1,8 +1,7 @@
 class_name GameManager
 extends Node
 
-@export var camera_manager: CameraManager
-
+static var turn_number: int = 0
 static var boards: Dictionary = {}
 
 

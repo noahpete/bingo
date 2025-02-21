@@ -14,7 +14,7 @@ func _ready() -> void:
 			child.transition.connect(_on_child_transition)
 		else:
 			push_warning("State machine contains incomptible child node!")
-	call_deferred("_on_initial_enter")
+	_on_initial_enter.call_deferred()
 	
 	
 func _process(delta: float) -> void:
