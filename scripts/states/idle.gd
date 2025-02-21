@@ -10,6 +10,7 @@ func _ready() -> void:
 
 
 func enter() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	dauber.get_node("Decal").visible = false
 	dauber.get_node("HoverComponent").active = false
 	camera_manager.to_idle()
@@ -23,4 +24,5 @@ func exit() -> void:
 	
 
 func _to_daubing_state() -> void:
-	transition.emit("Daubing")
+	if is_active_state:
+		transition.emit("Daubing")

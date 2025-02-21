@@ -25,12 +25,12 @@ func _process(delta: float) -> void:
 
 
 func dab() -> void:
-	await _dab_animation()
 	if not ray_cast_3d.get_collider():
 		return
 	var dab_instance = dab_scene.instantiate()
 	dab_parent.add_child(dab_instance)
 	dab_instance.position = ray_cast_3d.get_collision_point()
+	await _dab_animation()
 	
 	
 func _dab_animation() -> void:

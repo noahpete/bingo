@@ -72,18 +72,24 @@ func _move_dauber_to_mouse() -> void:
 		
 		
 func _rotate_dauber_upright() -> void:
-	var tween = create_tween()
-	var target_rotation = Vector3(0.0, deg_to_rad(51.8), deg_to_rad(180.0))
-	tween.tween_property(dauber, "rotation", target_rotation, DAUBER_ROTATE_SPEED)
-	await tween.finished
 	dauber.get_node("Decal").visible = true
+	
+	is_animating = true
+	var tween = create_tween()
+	tween.tween_property(dauber, "rotation", Vector3(0.0, deg_to_rad(51.8), deg_to_rad(180.0)), DAUBER_ROTATE_SPEED)
+	await tween.finished
+	is_animating = false
 
 
 func _rotate_dauber_down() -> void:
 	dauber.get_node("Decal").visible = false
+	
+	is_animating = true
 	var tween = create_tween()
 	tween.tween_property(dauber, "rotation", dauber_original_rotation, DAUBER_ROTATE_SPEED)
 	await tween.finished
+	is_animating = false
+	
 
 
 func _handle_dauber_return() -> void:

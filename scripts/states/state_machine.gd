@@ -30,6 +30,7 @@ func _input(event: InputEvent) -> void:
 	
 	
 func _on_initial_enter() -> void:
+	current_state.is_active_state = true
 	current_state.enter()
 	
 	
