@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://jyowrufktfr5"]
+
+[ext_resource type="Script" uid="uid://de2mw654cq302" path="res://scenes/ball/ball.gd" id="1_nv6q1"]
+[ext_resource type="Texture2D" uid="uid://b6hx0pcc8e7n0" path="res://scenes/ball/circle.png" id="1_oqv3d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5a6bx"]
+radius = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_oqv3d"]
+radius = 0.01
+height = 0.02
+
+[node name="Ball" type="RigidBody3D"]
+script = ExtResource("1_nv6q1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5a6bx")
+
+[node name="BallMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_oqv3d")
+
+[node name="SubViewport" type="SubViewport" parent="BallMesh"]
+size = Vector2i(64, 64)
+
+[node name="ColorRect" type="ColorRect" parent="BallMesh/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BallMesh/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oqv3d")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BallMesh/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "77"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
