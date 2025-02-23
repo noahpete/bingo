@@ -7,4 +7,4 @@ extends MeshInstance3D
 func set_display(text: String) -> void:
 	label.text = text
 	if int(text) < 10:
-		label.position.x += 4
+		label.position.x += 2

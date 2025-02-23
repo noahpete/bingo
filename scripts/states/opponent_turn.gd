@@ -13,7 +13,11 @@ func enter() -> void:
 	var ball_value = GameManager.draw_ball()
 	machine.set_display(str(ball_value))
 	
-	# <animate opponent marking board>
-	await get_tree().create_timer(2.0).timeout
+	await _take_turn()
 	
 	transition.emit("TurnEnd")
+
+
+func _take_turn() -> void:
+	await get_tree().create_timer(2.0).timeout
+	
