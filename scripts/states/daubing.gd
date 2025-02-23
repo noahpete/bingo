@@ -23,7 +23,6 @@ func _ready() -> void:
 	
 func enter() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
 	_rotate_dauber_upright()
 	
 	is_animating = true
@@ -42,14 +41,12 @@ func exit() -> void:
 
 
 func update(delta: float) -> void:
-	if not is_active_state:
-		return
 	_move_dauber_to_mouse()
 	_handle_dauber_return()
 	
 
 func input(event: InputEvent) -> void:
-	if is_animating or not is_active_state:
+	if is_animating:
 		return
 	if event.is_action_pressed("select"):
 		if is_hovering_over_return:
@@ -71,7 +68,6 @@ func _move_dauber_to_mouse() -> void:
 			0.0,
 			result.position.z
 		)
-		
 		var position_tween = create_tween()
 		position_tween.tween_property(dauber, "position:x", target_position.x, DAUBER_MOVE_SPEED)
 		position_tween.tween_property(dauber, "position:z", target_position.z, DAUBER_MOVE_SPEED)
@@ -79,7 +75,6 @@ func _move_dauber_to_mouse() -> void:
 		
 func _rotate_dauber_upright() -> void:
 	dauber.get_node("Decal").visible = true
-	
 	is_animating = true
 	var tween = create_tween()
 	tween.tween_property(dauber, "rotation", Vector3(0.0, deg_to_rad(51.8), deg_to_rad(180.0)), DAUBER_ROTATE_SPEED)
@@ -89,7 +84,6 @@ func _rotate_dauber_upright() -> void:
 
 func _rotate_dauber_down() -> void:
 	dauber.get_node("Decal").visible = false
-	
 	is_animating = true
 	var tween = create_tween()
 	tween.tween_property(dauber, "rotation", dauber_original_rotation, DAUBER_ROTATE_SPEED)
@@ -100,9 +94,7 @@ func _rotate_dauber_down() -> void:
 
 func _handle_dauber_return() -> void:
 	var result = camera_3d.raycast_areas(2)
-	
 	is_hovering_over_return = result and result.collider == dauber_return_area
-		
 	if result and result.collider == dauber_return_area:
 		var tween = create_tween()
 		tween.tween_property(dauber, "position", dauber.original_position, DAUBER_RETURN_SPEED)

@@ -1,6 +1,19 @@
 class_name OpponentTurnState
 extends State
 
+@export var player_state_machine: StateMachine
+
+@onready var machine: Machine = %Machine
+
 
 func enter() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if player_state_machine.current_state is not DaubingState:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	await get_tree().create_timer(1.0).timeout
+	var ball_value = GameManager.draw_ball()
+	machine.set_display(str(ball_value))
+	
+	# <animate opponent marking board>
+	await get_tree().create_timer(2.0).timeout
+	
+	transition.emit("TurnEnd")

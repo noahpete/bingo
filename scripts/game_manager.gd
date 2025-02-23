@@ -1,11 +1,27 @@
 class_name GameManager
 extends Node
 
+const NUMBER_OF_BALLS := 75
+
 static var turn_number: int = 0
 static var boards: Dictionary = {}
+static var balls: Array[int]
 
 
-static func generate_board(player: String):
+func _ready() -> void:
+	for i in range(NUMBER_OF_BALLS):
+		balls.append(i + 1)
+
+
+static func draw_ball() -> int:
+	if not balls:
+		return -1
+	var value = balls.pick_random()
+	balls.remove_at(balls.find(value))
+	return value
+
+
+static func generate_board(player: StringName):
 	var b_col = _generate_column(1, 15)
 	var i_col = _generate_column(16, 30)
 	var n_col = _generate_column(31, 45)

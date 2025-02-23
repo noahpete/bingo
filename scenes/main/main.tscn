@@ -102,8 +102,9 @@ player_state_machine = NodePath("../../PlayerStateMachine")
 game_state_machine = NodePath("..")
 button = NodePath("../../Level/Button")
 
-[node name="OpponentTurn" type="Node" parent="GameStateMachine"]
+[node name="OpponentTurn" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("player_state_machine")]
 script = ExtResource("7_cvijt")
+player_state_machine = NodePath("../../PlayerStateMachine")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_4a8fi")
@@ -146,6 +147,7 @@ shape = SubResource("CapsuleShape3D_i00rj")
 disabled = true
 
 [node name="Machine" parent="Level" instance=ExtResource("6_hdee7")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558898, 0)
 
 [node name="ControlArea" type="Area3D" parent="Level/Machine"]
@@ -181,6 +183,8 @@ transform = Transform3D(0.727289, 0, 0, 0, 0.727289, 0, 0, 0, 0.727289, -0.15864
 
 [node name="ClickableComponent" parent="Level/Button" index="3" node_paths=PackedStringArray("camera_3d")]
 camera_3d = NodePath("../../../Camera3D")
+
+[node name="Items" type="Node3D" parent="Level"]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

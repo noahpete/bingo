@@ -6,7 +6,7 @@ extends State
 
 func enter() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	await camera_manager.to_viewing()
+	camera_manager.to_viewing()
 
 
 func input(event: InputEvent) -> void:

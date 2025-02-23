@@ -5,13 +5,15 @@ extends State
 @export var game_state_machine: StateMachine
 @export var button: Button3D
 
+@onready var machine: Machine = %Machine
+
 
 func _ready() -> void:
 	button.get_node("ClickableComponent").clicked.connect(_player_turn_end)
 	
 	
 func enter() -> void:
-	pass
+	await machine.dispense_ball()
 
 
 func _player_turn_end() -> void:

@@ -7,9 +7,17 @@ extends State
 
 
 func enter() -> void:
-	await machine.spin_cage()
-	
 	if game_manager.turn_number % 2 == 0:
-		transition.emit("PlayerTurn")
+		await _player_turn()
 	else:
-		transition.emit("OpponentTurn")
+		await _opponent_turn()
+
+
+func _player_turn() -> void:
+	await machine.spin_cage()
+	transition.emit("PlayerTurn")
+
+
+func _opponent_turn() -> void:
+	await machine.spin_cage()
+	transition.emit("OpponentTurn")
