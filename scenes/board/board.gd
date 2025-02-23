@@ -11,7 +11,7 @@ const SINGLE_DIGIT_OFFSET = 4
 
 
 func _ready() -> void:
-	_set_board(GameManager.generate_board("player"))
+	_set_board(GameManager.generate_board("Player"))
 
 	
 func _set_board(board) -> void:
