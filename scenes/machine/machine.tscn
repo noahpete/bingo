@@ -120,12 +120,12 @@ mesh = SubResource("ArrayMesh_fphgb")
 [node name="Console" parent="." index="1"]
 mesh = SubResource("ArrayMesh_kdvvu")
 
-[node name="Cage" parent="." index="3" instance=ExtResource("2_u1cpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166662, 0.103313, -6.42985e-05)
-
-[node name="BallSpawn" type="Node3D" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026, 0.195)
-
-[node name="Screen" parent="." index="5" instance=ExtResource("5_yemkv")]
+[node name="Screen" parent="." index="3" instance=ExtResource("5_yemkv")]
 transform = Transform3D(1, 0, 0, 0, 0.759782, -0.650178, 0, 0.650178, 0.759782, 0, 0.0586059, 0.198525)
 mesh = SubResource("PlaneMesh_dkwxr")
+
+[node name="Cage" parent="." index="4" instance=ExtResource("2_u1cpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166662, 0.103313, -6.42985e-05)
+
+[node name="BallSpawn" type="Node3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026, 0.195)
