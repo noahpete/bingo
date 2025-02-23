@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://d24rkovakwpn5"]
+[gd_scene load_steps=17 format=4 uid="uid://d24rkovakwpn5"]
 
 [ext_resource type="PackedScene" uid="uid://b2rd5uw1b7qhw" path="res://scenes/machine/machine_base.glb" id="1_fcthg"]
 [ext_resource type="Script" uid="uid://rhc8xgun74n" path="res://scenes/machine/machine.gd" id="2_p3br3"]
 [ext_resource type="PackedScene" uid="uid://li3hsxiwf5kc" path="res://scenes/machine/machine_cage.glb" id="2_u1cpd"]
+[ext_resource type="PackedScene" uid="uid://dutn3rhwq3in1" path="res://scenes/ball/ball_mesh.tscn" id="3_lqk0y"]
+[ext_resource type="PackedScene" uid="uid://bkrkltuiuaamv" path="res://scenes/machine/screen/screen.tscn" id="5_yemkv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u5opq"]
 load_path = "res://.godot/imported/machine_base_steel_plates_512_albedo.png-53810b35b16ae22cdc7928f5b51c97b4.s3tc.ctex"
@@ -92,8 +94,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3dcru")
 
-[node name="Machine" instance=ExtResource("1_fcthg")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yemkv"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fphgb"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_yemkv")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dkwxr"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_fphgb")
+size = Vector2(0.12, 0.06)
+
+[node name="Machine" node_paths=PackedStringArray("ball_spawn") instance=ExtResource("1_fcthg")]
 script = ExtResource("2_p3br3")
+ball_mesh_scene = ExtResource("3_lqk0y")
+ball_spawn = NodePath("BallSpawn")
 
 [node name="Base" parent="." index="0"]
 mesh = SubResource("ArrayMesh_fphgb")
@@ -103,3 +122,10 @@ mesh = SubResource("ArrayMesh_kdvvu")
 
 [node name="Cage" parent="." index="3" instance=ExtResource("2_u1cpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166662, 0.103313, -6.42985e-05)
+
+[node name="BallSpawn" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026, 0.195)
+
+[node name="Screen" parent="." index="5" instance=ExtResource("5_yemkv")]
+transform = Transform3D(1, 0, 0, 0, 0.759782, -0.650178, 0, 0.650178, 0.759782, 0, 0.0586059, 0.198525)
+mesh = SubResource("PlaneMesh_dkwxr")
