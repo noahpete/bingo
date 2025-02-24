@@ -5,11 +5,16 @@ signal clicked
 signal mouse_enter
 signal mouse_leave
 
-@export var camera_3d: Camera3DRaycast
-
 @onready var parent: Node3D = $".."
 
 var is_hovering_over_parent := false
+var camera_3d: Camera3DRaycast
+
+
+func _ready() -> void:
+	camera_3d = get_viewport().get_camera_3d()
+	if not camera_3d or camera_3d is not Camera3DRaycast:
+		push_error("Unable to find camera usable for clickable component.")
 
 
 func _input(event: InputEvent) -> void:

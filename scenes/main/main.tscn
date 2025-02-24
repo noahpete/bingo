@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="Script" uid="uid://obkjkok1dmx1" path="res://scripts/states/opponent_turn.gd" id="7_cvijt"]
 [ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
+[ext_resource type="Script" uid="uid://cd8sxcsu3dfx8" path="res://scripts/states/game_win.gd" id="9_m4h2d"]
 [ext_resource type="Script" uid="uid://cxxh5vahlfrgo" path="res://scripts/managers/debug_manager.gd" id="9_r4lks"]
+[ext_resource type="Script" uid="uid://corduoxudinqb" path="res://scripts/states/game_lose.gd" id="10_p8abn"]
+[ext_resource type="Script" uid="uid://be7r48mo37sp8" path="res://scripts/managers/ai_manager.gd" id="10_pg34l"]
 [ext_resource type="PackedScene" uid="uid://cgedrmpr11f4a" path="res://scenes/button/button.tscn" id="12_kscwr"]
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
@@ -46,18 +49,6 @@ height = 0.164304
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nvumn"]
 radius = 0.0827093
 height = 0.224197
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_xrpen"]
-viewport_path = NodePath("Level/Board/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vds5o"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_xrpen")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lmn4p"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_vds5o")
-size = Vector2(0.2, 0.26)
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
@@ -107,8 +98,17 @@ button = NodePath("../../Level/EndTurnButton")
 script = ExtResource("7_cvijt")
 player_state_machine = NodePath("../../PlayerStateMachine")
 
+[node name="GameWin" type="Node" parent="GameStateMachine"]
+script = ExtResource("9_m4h2d")
+
+[node name="GameLose" type="Node" parent="GameStateMachine"]
+script = ExtResource("10_p8abn")
+
 [node name="DebugManager" type="Node" parent="."]
 script = ExtResource("9_r4lks")
+
+[node name="AIManager" type="Node" parent="."]
+script = ExtResource("10_pg34l")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_4a8fi")
@@ -161,38 +161,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00213632, 0.0107808, 0.171
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_nvumn")
 
-[node name="ClickableComponent" parent="Level/Machine" node_paths=PackedStringArray("camera_3d") instance=ExtResource("14_ou6is")]
-camera_3d = NodePath("../../../Camera3D")
+[node name="ClickableComponent" parent="Level/Machine" instance=ExtResource("14_ou6is")]
 
 [node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
 transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.564, 0.46)
 
-[node name="BoardMesh" parent="Level/Board" index="1"]
-mesh = SubResource("PlaneMesh_lmn4p")
-
 [node name="Dauber" parent="Level" node_paths=PackedStringArray("dab_parent") instance=ExtResource("8_1ne22")]
 transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.473522)
 dab_parent = NodePath("../Dabs")
-
-[node name="HoverComponent" parent="Level/Dauber" index="4" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
-
-[node name="ClickableComponent" parent="Level/Dauber" index="5" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
 
 [node name="Dabs" type="Node3D" parent="Level"]
 
 [node name="BingoButton" parent="Level" instance=ExtResource("12_kscwr")]
 transform = Transform3D(0.727, 0, 0, 0, 0.727, 0, 0, 0, 0.727, -0.16, 0.566, 0.407)
 
-[node name="ClickableComponent" parent="Level/BingoButton" index="3" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
-
 [node name="EndTurnButton" parent="Level" instance=ExtResource("12_kscwr")]
 transform = Transform3D(0.727289, 0, 0, 0, 0.727289, 0, 0, 0, 0.727289, -0.16, 0.566, 0.511)
-
-[node name="ClickableComponent" parent="Level/EndTurnButton" index="3" node_paths=PackedStringArray("camera_3d")]
-camera_3d = NodePath("../../../Camera3D")
 
 [node name="Items" type="Node3D" parent="Level"]
 
@@ -222,7 +206,6 @@ unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Ball Number"
 
-[editable path="Level/Board"]
-[editable path="Level/Dauber"]
-[editable path="Level/BingoButton"]
-[editable path="Level/EndTurnButton"]
+[node name="Button" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Prevent (0, 1)"
