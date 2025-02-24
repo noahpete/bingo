@@ -12,26 +12,31 @@ static var drawn_balls: Array[int]
 func _ready() -> void:
 	for i in range(NUMBER_OF_BALLS):
 		balls.append(i + 1)
-		
+			
+	
+static func debug_draw_ball(value: int) -> int:
+	if value in drawn_balls:
+		return -1
+	if value not in balls:
+		return -1
+	balls.remove_at(balls.find(value))
+	drawn_balls.append(value)
+	return value
+
 		
 static func has_bingo(player: StringName) -> bool:
 	var board = boards[player]
 	var bingo := false
-	
 	if not board:
 		return bingo
-	
 	for col in board:
 		if _check_column(col):
 			bingo = true
-	
 	for i in range(5):
 		if _check_row(i, board):
 			bingo = true
-	
 	if _check_diagonals(board):
 		bingo = true
-	
 	return bingo
 
 
@@ -39,16 +44,6 @@ static func draw_ball() -> int:
 	if not balls:
 		return -1
 	var value = balls.pick_random()
-	balls.remove_at(balls.find(value))
-	drawn_balls.append(value)
-	return value
-	
-	
-static func debug_draw_ball(value: int) -> int:
-	if value in drawn_balls:
-		return -1
-	if value not in balls:
-		return -1
 	balls.remove_at(balls.find(value))
 	drawn_balls.append(value)
 	return value
@@ -62,6 +57,11 @@ static func generate_board(player: StringName):
 	var o_col = _generate_column(61, 75)
 	boards[player] = [b_col, i_col, n_col, g_col, o_col]
 	return [b_col, i_col, n_col, g_col, o_col]
+
+
+static func remove_spot_from_play(row: int, col: int) -> void:
+	for board in boards.values():
+		board[col][row] = -1
 	
 	
 static func _generate_column(lo: int, hi: int) -> Array[int]:
