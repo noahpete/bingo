@@ -5,11 +5,18 @@ const NUMBER_OF_BALLS := 75
 
 static var turn_number: int = 0
 static var boards: Dictionary = {}
+
 static var balls: Array[int]
 static var drawn_balls: Array[int]
 
+enum SPECIAL_SPOT_VALUE {
+	BLOCKED = -1,
+	FREE = 0
+}
+
 
 func _ready() -> void:
+	drawn_balls.append(SPECIAL_SPOT_VALUE.FREE)
 	for i in range(NUMBER_OF_BALLS):
 		balls.append(i + 1)
 			
@@ -59,9 +66,14 @@ static func generate_board(player: StringName):
 	return [b_col, i_col, n_col, g_col, o_col]
 
 
+static func make_spot_free(row: int, col: int) -> void:
+	for board in boards.values():
+		board[col][row] = SPECIAL_SPOT_VALUE.FREE
+		
+
 static func remove_spot_from_play(row: int, col: int) -> void:
 	for board in boards.values():
-		board[col][row] = -1
+		board[col][row] = SPECIAL_SPOT_VALUE.BLOCKED
 	
 	
 static func _generate_column(lo: int, hi: int) -> Array[int]:
