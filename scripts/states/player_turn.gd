@@ -9,7 +9,8 @@ extends State
 
 
 func _ready() -> void:
-	button.get_node("ClickableComponent").clicked.connect(_player_turn_end)
+	pass
+	#button.get_node("ClickableComponent").clicked.connect(_player_turn_end)
 	
 	
 func enter() -> void:
