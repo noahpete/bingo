@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1fuqgw63sqlp"
-path.s3tc="res://.godot/imported/table_table.png-f8f59ed47c63dbb93c4f81eee80699db.s3tc.ctex"
+uid="uid://oauw731r2vjt"
+path.s3tc="res://.godot/imported/machine_cage_base_texture.png-1fe50f33e377229c8eca175cfac3ec1c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a7ed15c64ae72a06af07345fbb05c29d"
+"md5": "e07980b0a06632944e3e7e07ec2cace7"
 }
 
 [deps]
 
-source_file="res://scenes/table/table_table.png"
-dest_files=["res://.godot/imported/table_table.png-f8f59ed47c63dbb93c4f81eee80699db.s3tc.ctex"]
+source_file="res://scenes/machine/textures/machine_cage_base_texture.png"
+dest_files=["res://.godot/imported/machine_cage_base_texture.png-1fe50f33e377229c8eca175cfac3ec1c.s3tc.ctex"]
 
 [params]
 

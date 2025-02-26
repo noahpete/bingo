@@ -3,7 +3,7 @@ extends State
 
 @export var game_manager: GameManager
 @export var camera_manager: CameraManager
-@export var machine: Machine
+@onready var machine: Machine = %Machine
 
 
 func enter() -> void:

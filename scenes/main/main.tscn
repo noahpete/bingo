@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=28 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
 [ext_resource type="Script" uid="uid://cy6vl0mxuml73" path="res://scripts/states/turn_end.gd" id="5_gpcwx"]
 [ext_resource type="Script" uid="uid://cdvtecqscm8ky" path="res://scripts/states/player_turn.gd" id="6_gcu1f"]
-[ext_resource type="PackedScene" uid="uid://d24rkovakwpn5" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
+[ext_resource type="PackedScene" uid="uid://dxp2psvrjol7q" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="Script" uid="uid://obkjkok1dmx1" path="res://scripts/states/opponent_turn.gd" id="7_cvijt"]
 [ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
 [ext_resource type="Script" uid="uid://cd8sxcsu3dfx8" path="res://scripts/states/game_win.gd" id="9_m4h2d"]
@@ -20,8 +20,7 @@
 [ext_resource type="Script" uid="uid://corduoxudinqb" path="res://scripts/states/game_lose.gd" id="10_p8abn"]
 [ext_resource type="Script" uid="uid://be7r48mo37sp8" path="res://scripts/managers/ai_manager.gd" id="10_pg34l"]
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
-[ext_resource type="PackedScene" uid="uid://cdtty7cbmpnk1" path="res://scenes/table/table.tscn" id="13_bif50"]
-[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="14_ou6is"]
+[ext_resource type="PackedScene" uid="uid://cvu8jdulmpw7l" path="res://scenes/table/table.tscn" id="13_bif50"]
 [ext_resource type="PackedScene" uid="uid://bcbd26lufwxyk" path="res://scenes/console/console.tscn" id="18_s17dp"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
@@ -46,10 +45,6 @@ glow_enabled = true
 radius = 0.0266957
 height = 0.164304
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nvumn"]
-radius = 0.0827093
-height = 0.224197
-
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
 
@@ -57,11 +52,10 @@ script = SubResource("GDScript_e73j7")
 script = ExtResource("1_lcsqo")
 current_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_manager", "dauber", "machine")]
+[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_manager", "dauber")]
 script = ExtResource("2_uhchy")
 camera_manager = NodePath("../../CameraManager")
 dauber = NodePath("../../Level/Dauber")
-machine = NodePath("../../Level/Machine")
 
 [node name="Daubing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_3d", "camera_manager", "dauber", "dauber_return_area")]
 script = ExtResource("3_kp8lt")
@@ -78,11 +72,10 @@ camera_manager = NodePath("../../CameraManager")
 script = ExtResource("1_lcsqo")
 current_state = NodePath("TurnStart")
 
-[node name="TurnStart" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager", "camera_manager", "machine")]
+[node name="TurnStart" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager", "camera_manager")]
 script = ExtResource("4_civ8h")
 game_manager = NodePath("../../GameManager")
 camera_manager = NodePath("../../CameraManager")
-machine = NodePath("../../Level/Machine")
 
 [node name="TurnEnd" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager")]
 script = ExtResource("5_gpcwx")
@@ -132,7 +125,7 @@ target_position = Vector3(0, 0, -1)
 debug_shape_thickness = 1
 
 [node name="UtilCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 1.091, 0.979)
+transform = Transform3D(1, 0, 0, 0, 0.945518, 0.325568, 0, -0.325568, 0.945518, 0, 0.941, 1.054)
 visible = false
 fov = 65.0
 
@@ -154,22 +147,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609998, 0.645923)
 
 [node name="Machine" parent="Level" instance=ExtResource("6_hdee7")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558898, 0)
-
-[node name="ControlArea" type="Area3D" parent="Level/Machine"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00213632, 0.0107808, 0.171151)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Machine/ControlArea"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_nvumn")
-
-[node name="ClickableComponent" parent="Level/Machine" instance=ExtResource("14_ou6is")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559715, 0)
 
 [node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
-transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.564, 0.46)
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.560117, 0.426635)
 
 [node name="Dauber" parent="Level" node_paths=PackedStringArray("dab_parent") instance=ExtResource("8_1ne22")]
-transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.473522)
+transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.440157)
 dab_parent = NodePath("../Dabs")
 
 [node name="Dabs" type="Node3D" parent="Level"]

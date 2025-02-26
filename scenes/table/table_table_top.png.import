@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ykft5nlquix"
-path.s3tc="res://.godot/imported/machine_base_steel_plates_512_albedo.png-53810b35b16ae22cdc7928f5b51c97b4.s3tc.ctex"
+uid="uid://cbvgay62sliib"
+path.s3tc="res://.godot/imported/table_table_top.png-397a898227ce66a4c2d689ec4fa881bb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "16cdf25e7ec8dddc2bc4cd357e08262b"
+"md5": "0b187a1ea9c500165d50b588f71bfba1"
 }
 
 [deps]
 
-source_file="res://scenes/machine/machine_base_steel_plates_512_albedo.png"
-dest_files=["res://.godot/imported/machine_base_steel_plates_512_albedo.png-53810b35b16ae22cdc7928f5b51c97b4.s3tc.ctex"]
+source_file="res://scenes/table/table_table_top.png"
+dest_files=["res://.godot/imported/table_table_top.png-397a898227ce66a4c2d689ec4fa881bb.s3tc.ctex"]
 
 [params]
 

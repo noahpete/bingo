@@ -3,12 +3,10 @@ extends State
 
 @export var camera_manager: CameraManager
 @export var dauber: Dauber
-@export var machine: Machine
 
 
 func _ready() -> void:
 	dauber.get_node("ClickableComponent").clicked.connect(_to_daubing_state)
-	machine.get_node("ClickableComponent").clicked.connect(_to_viewing_state)
 	
 
 func enter() -> void:
