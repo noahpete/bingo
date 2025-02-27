@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=30 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cvu8jdulmpw7l" path="res://scenes/table/table.tscn" id="13_bif50"]
 [ext_resource type="PackedScene" uid="uid://bcbd26lufwxyk" path="res://scenes/console/console.tscn" id="18_s17dp"]
+[ext_resource type="Shader" uid="uid://dvxtpd7xk4quc" path="res://shaders/posterization.gdshader" id="23_p8abn"]
 
 [sub_resource type="GDScript" id="GDScript_e73j7"]
 script/source = "class_name Main
@@ -43,7 +44,11 @@ glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i00rj"]
 radius = 0.0266957
-height = 0.164304
+height = 0.134806
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s17dp"]
+shader = ExtResource("23_p8abn")
+shader_parameter/levels = 16
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_e73j7")
@@ -125,7 +130,7 @@ target_position = Vector3(0, 0, -1)
 debug_shape_thickness = 1
 
 [node name="UtilCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.945518, 0.325568, 0, -0.325568, 0.945518, 0, 0.941, 1.054)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.95, 1.05)
 visible = false
 fov = 65.0
 
@@ -134,7 +139,7 @@ fov = 65.0
 [node name="Table" parent="Level" instance=ExtResource("13_bif50")]
 
 [node name="DauberReturnArea" type="Area3D" parent="Level/Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240624, 0.602287, 0.361746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197271, 0.602287, 0.326748)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Table/DauberReturnArea"]
@@ -150,10 +155,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559715, 0)
 
 [node name="Board" parent="Level" instance=ExtResource("5_cyboq")]
-transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.560117, 0.426635)
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.560117, 0.422136)
 
 [node name="Dauber" parent="Level" node_paths=PackedStringArray("dab_parent") instance=ExtResource("8_1ne22")]
-transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.167578, 0.574457, 0.440157)
+transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.122098, 0.574457, 0.442893)
 dab_parent = NodePath("../Dabs")
 
 [node name="Dabs" type="Node3D" parent="Level"]
@@ -189,3 +194,22 @@ placeholder_text = "Ball Number"
 [node name="Button" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Prevent (0, 1)"
+
+[node name="PostProcessing" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Posterization" type="ColorRect" parent="PostProcessing"]
+material = SubResource("ShaderMaterial_s17dp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

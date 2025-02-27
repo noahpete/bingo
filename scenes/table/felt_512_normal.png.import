@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbvgay62sliib"
-path.s3tc="res://.godot/imported/table_table_top.png-397a898227ce66a4c2d689ec4fa881bb.s3tc.ctex"
+uid="uid://dqibrdyp37ml4"
+path.s3tc="res://.godot/imported/felt_512_normal.png-b992fbd466ebe632b9b7aafd54c44d3a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "164c09ac0fbb8cae82abb98267a8b3ac"
-}
 
 [deps]
 
-source_file="res://scenes/table/table_table_top.png"
-dest_files=["res://.godot/imported/table_table_top.png-397a898227ce66a4c2d689ec4fa881bb.s3tc.ctex"]
+source_file="res://scenes/table/felt_512_normal.png"
+dest_files=["res://.godot/imported/felt_512_normal.png-b992fbd466ebe632b9b7aafd54c44d3a.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://scenes/table/felt_512_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
