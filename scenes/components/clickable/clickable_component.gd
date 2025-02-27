@@ -12,6 +12,7 @@ var camera_3d: Camera3DRaycast
 
 
 func _ready() -> void:
+	assert(parent.find_child("CollisionShape3D"), "Cannot locate CollisionShape3D for ClickableComponent.")
 	camera_3d = get_viewport().get_camera_3d()
 	if not camera_3d or camera_3d is not Camera3DRaycast:
 		push_error("Unable to find camera usable for clickable component.")

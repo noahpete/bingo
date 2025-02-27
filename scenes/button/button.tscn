@@ -1,24 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgedrmpr11f4a"]
+[gd_scene load_steps=6 format=3 uid="uid://baxbhwselx5ml"]
 
-[ext_resource type="Script" uid="uid://cml44ltdvates" path="res://scenes/button/button.gd" id="1_aonjn"]
-[ext_resource type="PackedScene" uid="uid://c03xkrw4e6wk3" path="res://scenes/button/button_base.tscn" id="1_jmmgm"]
-[ext_resource type="PackedScene" uid="uid://63587ctkrvj6" path="res://scenes/button/button_press.tscn" id="2_fw5uy"]
-[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="3_yfh4i"]
+[ext_resource type="Script" uid="uid://wecg7r1vp0qo" path="res://scenes/button/button.gd" id="1_s3p44"]
+[ext_resource type="PackedScene" uid="uid://dtpk5h5n356j1" path="res://scenes/button/button_base.glb" id="2_q2jlx"]
+[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="2_u7yrx"]
+[ext_resource type="PackedScene" uid="uid://dujo6kiyvxrst" path="res://scenes/button/button_press.glb" id="3_bqlw5"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ng1ix"]
-height = 0.075293
-radius = 0.0619832
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2jlx"]
+size = Vector3(0.0255176, 0.0321582, 0.0218384)
 
 [node name="Button" type="Node3D"]
-script = ExtResource("1_aonjn")
+script = ExtResource("1_s3p44")
 
-[node name="Base" parent="." instance=ExtResource("1_jmmgm")]
+[node name="Model" type="Node3D" parent="."]
 
-[node name="Press" parent="." instance=ExtResource("2_fw5uy")]
+[node name="Base" parent="Model" instance=ExtResource("2_q2jlx")]
+unique_name_in_owner = true
+
+[node name="Press" parent="Model" instance=ExtResource("3_bqlw5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00157394, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("CylinderShape3D_ng1ix")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000424802, 0.0146826, -5.49331e-05)
+shape = SubResource("BoxShape3D_q2jlx")
 
-[node name="ClickableComponent" parent="." instance=ExtResource("3_yfh4i")]
+[node name="ClickableComponent" parent="." instance=ExtResource("2_u7yrx")]
