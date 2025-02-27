@@ -6,7 +6,6 @@ const BUTTON_PRESS_SPEED = 0.08
 
 @onready var press: Node3D = %Press
 
-
 var original_press_position: Vector3
 
 
