@@ -26,7 +26,7 @@ func enter() -> void:
 	_rotate_dauber_upright()
 	
 	is_animating = true
-	camera_manager.to_daubing()
+	camera_manager.to_viewing()
 	dauber.position.y = dauber.original_position.y + DAUBER_HOVER_HEIGHT
 	is_animating = false
 	

@@ -6,7 +6,7 @@ extends State
 
 
 func _ready() -> void:
-	dauber.get_node("ClickableComponent").clicked.connect(_to_daubing_state)
+	dauber.get_node("ClickableComponent").clicked.connect(_to_viewing_state)
 	
 
 func enter() -> void:
@@ -15,16 +15,12 @@ func enter() -> void:
 	dauber.get_node("HoverComponent").active = false
 	await camera_manager.to_idle()
 	dauber.get_node("HoverComponent").active = true
+	HoverComponent.restore_all()
 	
 
 func exit() -> void:
-	dauber.get_node("HoverComponent").active = false
+	HoverComponent.disable_all()
 	
-
-func _to_daubing_state() -> void:
-	if is_active_state:
-		transition.emit("Daubing")
-
 
 func _to_viewing_state() -> void:
 	if is_active_state:

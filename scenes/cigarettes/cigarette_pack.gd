@@ -6,11 +6,8 @@ extends Node3D
 
 
 func _ready() -> void:
-	clickable_component.clicked.connect(_get_cig)
+	pass
 	
-	
-func _get_cig() -> void:
-	play_animation("get_cig")
 
 func play_animation(animation_name: StringName) -> void:
 	animation_player.play(animation_name)
