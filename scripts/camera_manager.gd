@@ -3,8 +3,8 @@ extends Node
 
 const CAMERA_MOVE_SPEED = 0.25
 
-const IDLE_POSITION = Vector3(0.0, 1.1, 1.05)
-const IDLE_ROTATION = Vector3(-20.0, 0.0, 0.0)
+const IDLE_POSITION = Vector3(0.0, 0.95, 1.05)
+const IDLE_ROTATION = Vector3(-15.0, 0.0, 0.0)
 const IDLE_FOV = 65.0
 
 const DAUBING_POSITION = Vector3(0.0, 0.95, 0.75)
