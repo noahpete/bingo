@@ -7,6 +7,33 @@
 [ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="5_n75ra"]
 [ext_resource type="PackedScene" uid="uid://c8apufsnm02mh" path="res://scenes/components/hover/hover_component.tscn" id="6_2xjhy"]
 
+[sub_resource type="Animation" id="Animation_2xjhy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Lid:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Cigarettes/FrontRow/MiddleCig:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0242754, 0, 0.00226468)]
+}
+
 [sub_resource type="Animation" id="Animation_n75ra"]
 resource_name = "get_cig"
 length = 0.5
@@ -48,33 +75,6 @@ tracks/2/keys = {
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_2xjhy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model/Lid:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Model/Cigarettes/FrontRow/MiddleCig:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0242754, 0, 0.00226468)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f7kak"]

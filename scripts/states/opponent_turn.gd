@@ -7,7 +7,7 @@ extends State
 
 
 func enter() -> void:
-	if player_state_machine.current_state is not DaubingState:
+	if player_state_machine.current_state is not ViewingState:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	await get_tree().create_timer(1.0).timeout
 	var ball_value = GameManager.draw_ball()

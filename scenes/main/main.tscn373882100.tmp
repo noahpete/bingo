@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=34 format=3 uid="uid://cqhvmw1kxt00a"]
 
 [ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c5sqa8iukxq0a" path="res://scenes/main/main.gd" id="1_s17dp"]
 [ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
 [ext_resource type="Script" uid="uid://dawtlnm017d1t" path="res://scripts/states/idle.gd" id="2_uhchy"]
-[ext_resource type="Script" uid="uid://cklbymayheyne" path="res://scripts/states/viewing.gd" id="3_kp8lt"]
+[ext_resource type="Script" uid="uid://cklbymayheyne" path="res://scripts/states/daubing.gd" id="3_kp8lt"]
 [ext_resource type="Script" uid="uid://cdw58brstq20t" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
 [ext_resource type="Script" uid="uid://03wied83i7b3" path="res://scripts/states/turn_start.gd" id="4_civ8h"]
 [ext_resource type="Script" uid="uid://c8aey8p3t251g" path="res://scripts/states/animation.gd" id="5_37hlw"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" uid="uid://be7r48mo37sp8" path="res://scripts/managers/ai_manager.gd" id="10_pg34l"]
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
 [ext_resource type="PackedScene" uid="uid://cvu8jdulmpw7l" path="res://scenes/table/table.tscn" id="13_bif50"]
-[ext_resource type="Script" uid="uid://bn3o8tfclicy5" path="res://scripts/managers/component_manager.gd" id="16_6llfj"]
 [ext_resource type="PackedScene" uid="uid://bcbd26lufwxyk" path="res://scenes/console/console.tscn" id="18_s17dp"]
 [ext_resource type="PackedScene" uid="uid://d2ijx2j4hja66" path="res://scenes/cigarettes/cigarette_pack.tscn" id="22_s17dp"]
 [ext_resource type="Shader" uid="uid://dvxtpd7xk4quc" path="res://shaders/posterization.gdshader" id="23_p8abn"]
@@ -137,13 +136,13 @@ current_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_manager", "dauber")]
 script = ExtResource("2_uhchy")
-camera_manager = NodePath("../../Managers/CameraManager")
+camera_manager = NodePath("../../CameraManager")
 dauber = NodePath("../../Level/Items/Dauber")
 
 [node name="Viewing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("camera_3d", "camera_manager", "dauber", "dauber_return_area")]
 script = ExtResource("3_kp8lt")
 camera_3d = NodePath("../../Camera3D")
-camera_manager = NodePath("../../Managers/CameraManager")
+camera_manager = NodePath("../../CameraManager")
 dauber = NodePath("../../Level/Items/Dauber")
 dauber_return_area = NodePath("../../Level/Table/DauberReturnArea")
 
@@ -151,18 +150,17 @@ dauber_return_area = NodePath("../../Level/Table/DauberReturnArea")
 script = ExtResource("5_37hlw")
 
 [node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-unique_name_in_owner = true
 script = ExtResource("1_lcsqo")
 current_state = NodePath("TurnStart")
 
 [node name="TurnStart" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager", "camera_manager")]
 script = ExtResource("4_civ8h")
-game_manager = NodePath("../../Managers/GameManager")
-camera_manager = NodePath("../../Managers/CameraManager")
+game_manager = NodePath("../../GameManager")
+camera_manager = NodePath("../../CameraManager")
 
 [node name="TurnEnd" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("game_manager")]
 script = ExtResource("5_gpcwx")
-game_manager = NodePath("../../Managers/GameManager")
+game_manager = NodePath("../../GameManager")
 
 [node name="PlayerTurn" type="Node" parent="GameStateMachine" node_paths=PackedStringArray("player_state_machine", "game_state_machine")]
 script = ExtResource("6_gcu1f")
@@ -179,23 +177,18 @@ script = ExtResource("9_m4h2d")
 [node name="GameLose" type="Node" parent="GameStateMachine"]
 script = ExtResource("10_p8abn")
 
-[node name="Managers" type="Node" parent="."]
-
-[node name="DebugManager" type="Node" parent="Managers"]
+[node name="DebugManager" type="Node" parent="."]
 script = ExtResource("9_r4lks")
 
-[node name="AIManager" type="Node" parent="Managers"]
+[node name="AIManager" type="Node" parent="."]
 script = ExtResource("10_pg34l")
 
-[node name="GameManager" type="Node" parent="Managers"]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_4a8fi")
 
-[node name="CameraManager" type="Node" parent="Managers" node_paths=PackedStringArray("camera_3d")]
+[node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera_3d")]
 script = ExtResource("1_nc6yn")
-camera_3d = NodePath("../../Camera3D")
-
-[node name="ComponentManager" type="Node" parent="Managers"]
-script = ExtResource("16_6llfj")
+camera_3d = NodePath("../Camera3D")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kueq7")
@@ -250,7 +243,7 @@ dab_parent = NodePath("../../Dabs")
 
 [node name="CigarettePack" parent="Level/Items" instance=ExtResource("22_s17dp")]
 unique_name_in_owner = true
-transform = Transform3D(-2.69105e-07, -0.0743386, -0.277439, 0.287226, -1.03975e-06, -1.31006e-14, -1.00433e-06, -0.277439, 0.0743386, -0.119242, 0.570041, 0.437422)
+transform = Transform3D(-2.69105e-07, -0.0743387, -0.277439, 0.287226, -1.03976e-06, -1.31006e-14, -1.00433e-06, -0.277439, 0.0743387, -0.119242, 0.570041, 0.437422)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -259,7 +252,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DebugPanel" type="PanelContainer" parent="UI"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 0
 offset_left = 10.0

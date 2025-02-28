@@ -4,24 +4,31 @@ extends State
 @export var camera_manager: CameraManager
 @export var dauber: Dauber
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var pack: CigarettePack = %CigarettePack
+
 
 func _ready() -> void:
 	dauber.get_node("ClickableComponent").clicked.connect(_to_viewing_state)
+	pack.get_node("ClickableComponent").clicked.connect(_play_use_cig)
 	
 
 func enter() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	dauber.get_node("Decal").visible = false
-	dauber.get_node("HoverComponent").active = false
+	ComponentManager.disable_components_of_type("HoverComponent")
 	await camera_manager.to_idle()
-	dauber.get_node("HoverComponent").active = true
-	HoverComponent.restore_all()
+	ComponentManager.enable_components_of_type("HoverComponent")
 	
 
 func exit() -> void:
-	HoverComponent.disable_all()
+	ComponentManager.disable_components_of_type("HoverComponent")
 	
 
 func _to_viewing_state() -> void:
 	if is_active_state:
 		transition.emit("Viewing")
+
+
+func _play_use_cig() -> void:
+	animation_player.play("use_cig")
