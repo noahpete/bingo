@@ -12,11 +12,15 @@ static var global_disable: bool = false
 
 
 func _ready() -> void:
-	component_ready()
+	super()
 	assert(parent.find_child("CollisionShape3D"), "Cannot locate CollisionShape3D for ClickableComponent.")
 	camera_3d = get_viewport().get_camera_3d()
 	if not camera_3d or camera_3d is not Camera3DRaycast:
 		push_error("Unable to find camera usable for clickable component.")
+
+
+func _exit_tree() -> void:
+	super()
 
 
 func _input(event: InputEvent) -> void:
