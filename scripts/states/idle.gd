@@ -9,8 +9,8 @@ extends State
 
 
 func _ready() -> void:
-	dauber.get_node("ClickableComponent").clicked.connect(_to_viewing_state)
-	pack.get_node("ClickableComponent").clicked.connect(_play_use_cig)
+	dauber.get_node("ClickableComponent").clicked.connect(_to_viewing)
+	pack.get_node("ClickableComponent").clicked.connect(_to_animation)
 	
 
 func enter() -> void:
@@ -25,10 +25,11 @@ func exit() -> void:
 	ComponentManager.disable_components_of_type("HoverComponent")
 	
 
-func _to_viewing_state() -> void:
+func _to_viewing() -> void:
 	if is_active_state:
 		transition.emit("Viewing")
 
 
-func _play_use_cig() -> void:
-	animation_player.play("use_cig")
+func _to_animation() -> void:
+	if is_active_state:
+		transition.emit("Animation")

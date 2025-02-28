@@ -10,3 +10,7 @@ func enter() -> void:
 func exit() -> void:
 	ComponentManager.restore_components_of_type("HoverComponent")
 	ComponentManager.restore_components_of_type("ClickableComponent")
+
+
+func to_idle() -> void:
+	transition.emit("Idle")
