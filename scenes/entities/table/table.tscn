@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvu8jdulmpw7l"]
+
+[ext_resource type="PackedScene" uid="uid://ccaluv5hym5bp" path="res://scenes/entities/table/table_model.tscn" id="1_qavd0"]
+
+[node name="Table" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_qavd0")]

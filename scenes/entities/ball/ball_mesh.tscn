@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dutn3rhwq3in1"]
+
+[ext_resource type="Shader" uid="uid://cpnv6dt0uvy5l" path="res://shaders/dissolve.gdshader" id="1_5x6yg"]
+[ext_resource type="Script" uid="uid://de2mw654cq302" path="res://scenes/entities/ball/ball_mesh.gd" id="1_ldtjp"]
+[ext_resource type="Texture2D" uid="uid://b6hx0pcc8e7n0" path="res://scenes/entities/ball/circle.png" id="2_5x6yg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5x6yg"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6h2mp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qfoor"]
+noise = SubResource("FastNoiseLite_6h2mp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h2mp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_5x6yg")
+shader_parameter/albedo_sampler = SubResource("ViewportTexture_5x6yg")
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_qfoor")
+shader_parameter/progress = 0.0
+shader_parameter/emission_color = Vector4(0.9, 0.87, 0.82, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_oqv3d"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_6h2mp")
+radius = 0.008
+height = 0.016
+
+[node name="BallMesh" type="MeshInstance3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("SphereMesh_oqv3d")
+script = ExtResource("1_ldtjp")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(128, 64)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5x6yg")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "77"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

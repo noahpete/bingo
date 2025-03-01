@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcbd26lufwxyk"]
+
+[ext_resource type="PackedScene" uid="uid://baxbhwselx5ml" path="res://scenes/entities/button/button.tscn" id="2_kai4s"]
+[ext_resource type="PackedScene" uid="uid://7wepun13450w" path="res://scenes/entities/console/console_base.tscn" id="2_ov55a"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a45cr"]
+size = Vector2(0.1, 0.045)
+
+[node name="Console" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("2_ov55a")]
+transform = Transform3D(1.145, 0, 0, 0, 1.145, 0, 0, 0, 1.145, 0, 0, 0)
+
+[node name="LeftButton" parent="Model" instance=ExtResource("2_kai4s")]
+transform = Transform3D(1, 0, 0, 0, 0.79692, -0.604084, 0, 0.604084, 0.79692, -0.0672162, 0.00577042, 0.0256876)
+
+[node name="RightButton" parent="Model" instance=ExtResource("2_kai4s")]
+transform = Transform3D(1, 0, 0, 0, 0.79692, -0.604084, 0, 0.604084, 0.79692, 0.0672664, 0.00577042, 0.0256876)
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.803982, -0.594654, 0, 0.594654, 0.803982, 0, 0.0245117, 0.0410738)
+mesh = SubResource("PlaneMesh_a45cr")

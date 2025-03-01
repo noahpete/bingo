@@ -4,13 +4,9 @@ extends State
 @export var camera_manager: CameraManager
 @export var dauber: Dauber
 
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var pack: CigarettePack = %CigarettePack
-
 
 func _ready() -> void:
 	dauber.get_node("ClickableComponent").clicked.connect(_to_viewing)
-	pack.get_node("ClickableComponent").clicked.connect(_to_animation)
 	
 
 func enter() -> void:

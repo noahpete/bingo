@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxp2psvrjol7q"]
+
+[ext_resource type="PackedScene" uid="uid://b0x32gorrfdkt" path="res://scenes/entities/machine/machine_base.glb" id="1_fcthg"]
+[ext_resource type="Script" uid="uid://bjtkq08rgarad" path="res://scenes/entities/machine/machine.gd" id="2_p3br3"]
+[ext_resource type="PackedScene" uid="uid://5jxerhk0lk5m" path="res://scenes/entities/machine/machine_cage.glb" id="2_u1cpd"]
+
+[node name="Machine" type="Node3D"]
+script = ExtResource("2_p3br3")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Base" parent="Model" instance=ExtResource("1_fcthg")]
+
+[node name="Cage" parent="Model" instance=ExtResource("2_u1cpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103533, 0)

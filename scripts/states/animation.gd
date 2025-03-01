@@ -3,6 +3,7 @@ extends State
 
 
 func enter() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	ComponentManager.disable_components_of_type("HoverComponent")
 	ComponentManager.disable_components_of_type("ClickableComponent")
 

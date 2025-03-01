@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d0hl8e7reaecp"]
+
+[ext_resource type="Texture2D" uid="uid://d4bb72upqk5e2" path="res://scenes/entities/console/console_console_button.png" id="1_tvvqa"]
+
+[resource]
+resource_name = "Button"
+cull_mode = 2
+albedo_texture = ExtResource("1_tvvqa")
+roughness = 0.5

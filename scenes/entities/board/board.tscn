@@ -1,0 +1,525 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmvhocnreld8e"]
+
+[ext_resource type="Texture2D" uid="uid://d05wlgoxh6gfg" path="res://scenes/entities/board/board.png" id="1_4w700"]
+[ext_resource type="Script" uid="uid://h8gfv88ib1kk" path="res://scenes/entities/board/board.gd" id="1_tu2am"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jnyf0"]
+radius = 0.0114351
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxpup"]
+size = Vector3(0.215946, 0.025, 0.273608)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rx1a7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gic5v"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_rx1a7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_34oa8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_gic5v")
+size = Vector2(0.2, 0.24)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jnyf0"]
+data = PackedVector3Array(0.1, 0, 0.13, -0.1, 0, 0.13, 0.1, 0, -0.13, -0.1, 0, 0.13, -0.1, 0, -0.13, 0.1, 0, -0.13)
+
+[node name="Board" type="Node3D"]
+script = ExtResource("1_tu2am")
+
+[node name="Spaces" type="Node3D" parent="."]
+
+[node name="B" type="Node3D" parent="Spaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0504405, 0, 0)
+
+[node name="0" type="Area3D" parent="Spaces/B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0113598, -1.49012e-08, -0.0598238)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/B/0"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="1" type="Area3D" parent="Spaces/B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0124972, 1.49012e-08, -0.0247967)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/B/1"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="2" type="Area3D" parent="Spaces/B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128517, 0, 0.00942108)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/B/2"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="3" type="Area3D" parent="Spaces/B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0126953, -1.49012e-08, 0.0490461)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/B/3"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="4" type="Area3D" parent="Spaces/B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135901, -2.98023e-08, 0.0897826)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/B/4"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="I" type="Node3D" parent="Spaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0268863, 0, 0)
+
+[node name="0" type="Area3D" parent="Spaces/I"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00560988, 0, -0.0602789)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/I/0"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="1" type="Area3D" parent="Spaces/I"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00530303, 0, -0.0216943)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/I/1"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="2" type="Area3D" parent="Spaces/I"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00530304, 0, 0.0145391)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/I/2"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="3" type="Area3D" parent="Spaces/I"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00530303, 0, 0.0507498)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/I/3"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="4" type="Area3D" parent="Spaces/I"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00530304, 0, 0.0887576)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/I/4"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="N" type="Node3D" parent="Spaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00161879, 0, 0)
+
+[node name="0" type="Area3D" parent="Spaces/N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000220446, 0, -0.0590515)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/N/0"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="1" type="Area3D" parent="Spaces/N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000527321, 0, -0.0226149)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/N/1"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="2" type="Area3D" parent="Spaces/N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000220461, 0, 0.014846)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/N/2"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="3" type="Area3D" parent="Spaces/N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000527306, 0, 0.0510567)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/N/3"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="4" type="Area3D" parent="Spaces/N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00114103, 0, 0.0905988)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/N/4"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="G" type="Node3D" parent="Spaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0242213, 0, 0)
+
+[node name="0" type="Area3D" parent="Spaces/G"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00697137, 0, -0.0587446)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/G/0"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="1" type="Area3D" parent="Spaces/G"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00635765, 0, -0.0232286)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/G/1"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="2" type="Area3D" parent="Spaces/G"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00697139, 0, 0.0157666)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/G/2"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="3" type="Area3D" parent="Spaces/G"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00758509, 0, 0.0510566)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/G/3"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="4" type="Area3D" parent="Spaces/G"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00635765, 0, 0.090292)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/G/4"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="O" type="Node3D" parent="Spaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0505134, 0, 0)
+
+[node name="0" type="Area3D" parent="Spaces/O"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134155, 0, -0.057824)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/O/0"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="1" type="Area3D" parent="Spaces/O"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0131086, 0, -0.0204669)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/O/1"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="2" type="Area3D" parent="Spaces/O"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128017, 0, 0.0166872)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/O/2"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="3" type="Area3D" parent="Spaces/O"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0131086, 0, 0.0513635)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/O/3"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="4" type="Area3D" parent="Spaces/O"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134155, 0, 0.0887576)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaces/O/4"]
+shape = SubResource("SphereShape3D_jnyf0")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.29162e-05, 0, 0.000915512)
+shape = SubResource("BoxShape3D_pxpup")
+
+[node name="BoardMesh" type="MeshInstance3D" parent="."]
+layers = 3
+mesh = SubResource("PlaneMesh_34oa8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BoardMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoardMesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jnyf0")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(98, 119)
+
+[node name="CanvasLayer" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background" type="ColorRect" parent="SubViewport/CanvasLayer"]
+custom_minimum_size = Vector2(100, 120)
+offset_right = 100.0
+offset_bottom = 120.0
+
+[node name="BoardTexture" type="TextureRect" parent="SubViewport/CanvasLayer"]
+offset_left = -9.0
+offset_top = -6.0
+offset_right = 109.0
+offset_bottom = 130.0
+texture = ExtResource("1_4w700")
+expand_mode = 1
+
+[node name="B" type="Control" parent="SubViewport/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -10.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 24.0
+
+[node name="B0" type="Label" parent="SubViewport/CanvasLayer/B"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 40.0
+offset_right = 35.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="B1" type="Label" parent="SubViewport/CanvasLayer/B"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 56.0
+offset_right = 35.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="B2" type="Label" parent="SubViewport/CanvasLayer/B"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 35.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="B3" type="Label" parent="SubViewport/CanvasLayer/B"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 35.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="B4" type="Label" parent="SubViewport/CanvasLayer/B"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 35.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="I" type="Control" parent="SubViewport/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = -16.0
+offset_right = 45.0
+offset_bottom = 24.0
+
+[node name="I0" type="Label" parent="SubViewport/CanvasLayer/I"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 40.0
+offset_right = 35.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="I1" type="Label" parent="SubViewport/CanvasLayer/I"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 56.0
+offset_right = 35.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="I2" type="Label" parent="SubViewport/CanvasLayer/I"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 35.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="I3" type="Label" parent="SubViewport/CanvasLayer/I"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 35.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="I4" type="Label" parent="SubViewport/CanvasLayer/I"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 35.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="N" type="Control" parent="SubViewport/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 60.0
+offset_bottom = 24.0
+
+[node name="N0" type="Label" parent="SubViewport/CanvasLayer/N"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 40.0
+offset_right = 35.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="N1" type="Label" parent="SubViewport/CanvasLayer/N"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 56.0
+offset_right = 35.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="N2" type="Label" parent="SubViewport/CanvasLayer/N"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 35.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="N3" type="Label" parent="SubViewport/CanvasLayer/N"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 35.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="N4" type="Label" parent="SubViewport/CanvasLayer/N"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 35.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="G" type="Control" parent="SubViewport/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 36.0
+offset_top = -16.0
+offset_right = 76.0
+offset_bottom = 24.0
+
+[node name="G0" type="Label" parent="SubViewport/CanvasLayer/G"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 40.0
+offset_right = 35.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="G1" type="Label" parent="SubViewport/CanvasLayer/G"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 56.0
+offset_right = 35.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="G2" type="Label" parent="SubViewport/CanvasLayer/G"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 35.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="G3" type="Label" parent="SubViewport/CanvasLayer/G"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 35.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="G4" type="Label" parent="SubViewport/CanvasLayer/G"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 35.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="O" type="Control" parent="SubViewport/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 52.0
+offset_top = -16.0
+offset_right = 92.0
+offset_bottom = 24.0
+
+[node name="O0" type="Label" parent="SubViewport/CanvasLayer/O"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 40.0
+offset_right = 35.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="O1" type="Label" parent="SubViewport/CanvasLayer/O"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 56.0
+offset_right = 35.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="O2" type="Label" parent="SubViewport/CanvasLayer/O"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 35.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="O3" type="Label" parent="SubViewport/CanvasLayer/O"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 35.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"
+
+[node name="O4" type="Label" parent="SubViewport/CanvasLayer/O"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 35.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "11"

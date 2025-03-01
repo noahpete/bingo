@@ -3,11 +3,14 @@ extends Node
 
 @export var current_state: State
 
+static var state_machines: Dictionary = {}
+
 var states: Dictionary = {}
 var previous_state: State = null
 
 
 func _ready() -> void:
+	state_machines[self.name] = self
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
@@ -47,3 +50,7 @@ func _on_child_transition(new_state_name: StringName) -> void:
 			current_state = new_state
 	else:
 		push_warning("State [" + new_state_name + "] does not exist")
+
+
+static func get_state_machine(state_machine_name: String) -> StateMachine:
+	return state_machines[state_machine_name]

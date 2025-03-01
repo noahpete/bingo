@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 	debug_panel.add_property("Game State", game_state_machine.current_state.name, 1)
 	debug_panel.add_property("Drawn balls", game_manager.drawn_balls, 2)
 	debug_panel.add_property("Player bingo?", GameManager.has_bingo("Player"), 3)
-	debug_panel.add_property("Comps", ComponentManager.components, 4)
 	
 	
 func _on_text_submitted(input_text: String):

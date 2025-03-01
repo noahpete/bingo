@@ -1,6 +1,6 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqhvmw1kxt00a"]
+[gd_scene load_steps=35 format=3 uid="uid://cqhvmw1kxt00a"]
 
-[ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/managers/game_manager.gd" id="1_4a8fi"]
+[ext_resource type="Script" uid="uid://birtegfb07djh" path="res://scripts/game_manager.gd" id="1_4a8fi"]
 [ext_resource type="Script" uid="uid://dl7rpkc2pypsn" path="res://scripts/states/state_machine.gd" id="1_lcsqo"]
 [ext_resource type="Script" uid="uid://c5sqa8iukxq0a" path="res://scenes/main/main.gd" id="1_s17dp"]
 [ext_resource type="PackedScene" uid="uid://c302k6m7rj3ap" path="res://scenes/level/level.tscn" id="1_xm2jn"]
@@ -9,24 +9,136 @@
 [ext_resource type="Script" uid="uid://cdw58brstq20t" path="res://scripts/camera_3d_raycast.gd" id="3_vgubw"]
 [ext_resource type="Script" uid="uid://03wied83i7b3" path="res://scripts/states/turn_start.gd" id="4_civ8h"]
 [ext_resource type="Script" uid="uid://c8aey8p3t251g" path="res://scripts/states/animation.gd" id="5_37hlw"]
-[ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/entities/board/board.tscn" id="5_cyboq"]
+[ext_resource type="PackedScene" uid="uid://bmvhocnreld8e" path="res://scenes/board/board.tscn" id="5_cyboq"]
 [ext_resource type="Script" uid="uid://cy6vl0mxuml73" path="res://scripts/states/turn_end.gd" id="5_gpcwx"]
 [ext_resource type="Script" uid="uid://cdvtecqscm8ky" path="res://scripts/states/player_turn.gd" id="6_gcu1f"]
-[ext_resource type="PackedScene" uid="uid://dxp2psvrjol7q" path="res://scenes/entities/machine/machine.tscn" id="6_hdee7"]
+[ext_resource type="PackedScene" uid="uid://dxp2psvrjol7q" path="res://scenes/machine/machine.tscn" id="6_hdee7"]
 [ext_resource type="Script" uid="uid://obkjkok1dmx1" path="res://scripts/states/opponent_turn.gd" id="7_cvijt"]
-[ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/entities/dauber/dauber.tscn" id="8_1ne22"]
+[ext_resource type="PackedScene" uid="uid://brusjvf7wovcw" path="res://scenes/dauber/dauber.tscn" id="8_1ne22"]
 [ext_resource type="Script" uid="uid://cd8sxcsu3dfx8" path="res://scripts/states/game_win.gd" id="9_m4h2d"]
 [ext_resource type="Script" uid="uid://cxxh5vahlfrgo" path="res://scripts/managers/debug_manager.gd" id="9_r4lks"]
 [ext_resource type="Script" uid="uid://corduoxudinqb" path="res://scripts/states/game_lose.gd" id="10_p8abn"]
 [ext_resource type="Script" uid="uid://be7r48mo37sp8" path="res://scripts/managers/ai_manager.gd" id="10_pg34l"]
 [ext_resource type="Script" uid="uid://ssefqbgu501x" path="res://scripts/debug_panel.gd" id="12_v3y3y"]
-[ext_resource type="PackedScene" uid="uid://cvu8jdulmpw7l" path="res://scenes/entities/table/table.tscn" id="13_bif50"]
-[ext_resource type="Script" uid="uid://b446a22e5ujc5" path="res://scripts/managers/camera_manager.gd" id="15_6llfj"]
+[ext_resource type="PackedScene" uid="uid://cvu8jdulmpw7l" path="res://scenes/table/table.tscn" id="13_bif50"]
 [ext_resource type="Script" uid="uid://bn3o8tfclicy5" path="res://scripts/managers/component_manager.gd" id="16_6llfj"]
-[ext_resource type="Script" uid="uid://cve27vkr1ly8b" path="res://scripts/managers/item_manager.gd" id="17_0bhws"]
-[ext_resource type="PackedScene" uid="uid://bcbd26lufwxyk" path="res://scenes/entities/console/console.tscn" id="18_s17dp"]
-[ext_resource type="PackedScene" uid="uid://d2ijx2j4hja66" path="res://scenes/entities/cigarettes/cigarette_pack.tscn" id="22_s17dp"]
+[ext_resource type="PackedScene" uid="uid://bcbd26lufwxyk" path="res://scenes/console/console.tscn" id="18_s17dp"]
+[ext_resource type="PackedScene" uid="uid://d2ijx2j4hja66" path="res://scenes/cigarettes/cigarette_pack.tscn" id="22_s17dp"]
 [ext_resource type="Shader" uid="uid://dvxtpd7xk4quc" path="res://shaders/posterization.gdshader" id="23_p8abn"]
+
+[sub_resource type="Animation" id="Animation_s17dp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level/Items/CigarettePack:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.119242, 0.570041, 0.437422)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level/Items/CigarettePack:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.56109e-14, -1.309, 1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_p8abn"]
+resource_name = "use_cig"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level/Items/CigarettePack:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.204635, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.119242, 0.570041, 0.437422), Vector3(-0.065, 0.776, 0.698), Vector3(-0.014, 0.875, 0.947)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level/Items/CigarettePack:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(4.56109e-14, -1.309, 1.5708), Vector3(0, -1.23046, 0.287979)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level/Items/CigarettePack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_get_cig_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37hlw"]
+_data = {
+&"RESET": SubResource("Animation_s17dp"),
+&"use_cig": SubResource("Animation_p8abn")
+}
+
+[sub_resource type="GDScript" id="GDScript_37hlw"]
+script/source = "class_name CameraManager
+extends Node
+
+const CAMERA_MOVE_SPEED = 0.25
+
+const IDLE_POSITION = Vector3(0.0, 0.95, 1.05)
+const IDLE_ROTATION = Vector3(-15.0, 0.0, 0.0)
+const IDLE_FOV = 65.0
+
+const VIEWING_POSITION = Vector3(0.0, 0.95, 0.75)
+const VIEWING_ROTATION = Vector3(-45.0, 0.0, 0.0)
+const VIEWING_FOV = 40.0
+
+
+@export var camera_3d: Camera3D
+	
+
+func move_to(position: Vector3, rotation: Vector3, fov: float) -> void:
+	var position_tween = create_tween()
+	var rotation_tween = create_tween()
+	var fov_tween = create_tween()
+	
+	var radians = Vector3(deg_to_rad(rotation.x), deg_to_rad(rotation.y), deg_to_rad(rotation.z))
+	
+	position_tween.tween_property(camera_3d, \"position\", position, CAMERA_MOVE_SPEED)
+	rotation_tween.tween_property(camera_3d, \"rotation\", radians, CAMERA_MOVE_SPEED)
+	fov_tween.tween_property(camera_3d, \"fov\", fov, CAMERA_MOVE_SPEED)
+	
+	await position_tween.finished
+
+
+func to_idle() -> void:
+	await move_to(IDLE_POSITION, IDLE_ROTATION, IDLE_FOV)
+
+
+func to_viewing() -> void:
+	await move_to(VIEWING_POSITION, VIEWING_ROTATION, VIEWING_FOV)
+"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ysw1q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,6 +163,12 @@ shader_parameter/levels = 16
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s17dp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_37hlw")
+}
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("1_lcsqo")
@@ -112,16 +230,11 @@ script = ExtResource("10_pg34l")
 script = ExtResource("1_4a8fi")
 
 [node name="CameraManager" type="Node" parent="Managers" node_paths=PackedStringArray("camera_3d")]
-script = ExtResource("15_6llfj")
+script = SubResource("GDScript_37hlw")
 camera_3d = NodePath("../../Camera3D")
 
 [node name="ComponentManager" type="Node" parent="Managers"]
 script = ExtResource("16_6llfj")
-
-[node name="ItemManager" type="Node" parent="Managers" node_paths=PackedStringArray("cig_spawn")]
-script = ExtResource("17_0bhws")
-cig_pack = ExtResource("22_s17dp")
-cig_spawn = NodePath("../../Level/Items/ItemSpawn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kueq7")
@@ -140,6 +253,7 @@ debug_shape_thickness = 1
 
 [node name="UtilCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.95, 1.05)
+visible = false
 fov = 65.0
 
 [node name="Level" parent="." instance=ExtResource("1_xm2jn")]
@@ -166,9 +280,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559715, 0)
 
 [node name="Items" type="Node3D" parent="Level"]
 
-[node name="ItemSpawn" type="Node3D" parent="Level/Items"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125292, 0.565308, 0.422911)
-
 [node name="Board" parent="Level/Items" instance=ExtResource("5_cyboq")]
 transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.560117, 0.422136)
 
@@ -176,9 +287,9 @@ transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.560117, 0.42213
 transform = Transform3D(-3.49691e-08, 3.49691e-08, -0.8, 0.8, 6.03983e-08, -3.49691e-08, 6.03983e-08, -0.8, -3.49691e-08, 0.122098, 0.574457, 0.442893)
 dab_parent = NodePath("../../Dabs")
 
-[node name="ItemUsePosition" type="Node3D" parent="Level"]
+[node name="CigarettePack" parent="Level/Items" instance=ExtResource("22_s17dp")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.864, 0.921)
+transform = Transform3D(-2.69105e-07, -0.0743386, -0.277439, 0.287226, -1.03975e-06, -1.31006e-14, -1.00433e-06, -0.277439, 0.0743386, -0.119242, 0.570041, 0.437422)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -209,7 +320,7 @@ placeholder_text = "Ball Number"
 
 [node name="Button" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Spawn cigs"
+text = "Prevent (0, 1)"
 
 [node name="PostProcessing" type="Control" parent="."]
 layout_mode = 3
@@ -229,5 +340,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[connection signal="pressed" from="UI/DebugPanel/MarginContainer/VBoxContainer/Button" to="Managers/ItemManager" method="_on_button_pressed"]

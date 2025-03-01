@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2ijx2j4hja66"]
+
+[ext_resource type="PackedScene" uid="uid://k3vkgwe15rnw" path="res://scenes/entities/cigarettes/pack_base.glb" id="1_0qi8i"]
+[ext_resource type="Script" uid="uid://cd0cm46bvqfge" path="res://scenes/entities/cigarettes/cigarette_pack.gd" id="1_ep7hn"]
+[ext_resource type="PackedScene" uid="uid://bnjhwa8nl13cf" path="res://scenes/entities/cigarettes/pack_lid.glb" id="2_rcvn7"]
+[ext_resource type="PackedScene" uid="uid://bn3iwqciecivy" path="res://scenes/entities/cigarettes/cig.glb" id="3_04mo4"]
+[ext_resource type="PackedScene" uid="uid://clp22dwow2fku" path="res://scenes/components/clickable/clickable_component.tscn" id="5_n75ra"]
+[ext_resource type="PackedScene" uid="uid://c8apufsnm02mh" path="res://scenes/components/hover/hover_component.tscn" id="6_2xjhy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xjhy"]
+size = Vector3(0.0857543, 0.0649566, 0.046936)
+
+[node name="CigarettePack" type="Node3D"]
+script = ExtResource("1_ep7hn")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-1.04907e-08, 0, -0.3, 0, 0.3, 0, 0.24, 0, -1.31134e-08, 0, 0, 0)
+
+[node name="Pack" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Base" parent="Model/Pack" instance=ExtResource("1_0qi8i")]
+transform = Transform3D(0.909371, 0, 0, 0, 1, 0, 0, 0, 0.960327, -0.00209801, 0, -6.93889e-18)
+
+[node name="Lid" parent="Model/Pack" instance=ExtResource("2_rcvn7")]
+transform = Transform3D(0.910279, 0, 0, 0, 1.01977, 0, 0, 0, 0.960327, -0.0442011, 0.0717143, -1.11022e-16)
+
+[node name="Cigarettes" type="Node3D" parent="Model/Pack"]
+transform = Transform3D(1.24436, 0, 7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="FrontRow" type="Node3D" parent="Model/Pack/Cigarettes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00586696, 0, 0)
+
+[node name="Cig0" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0574718)
+
+[node name="Cig1" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0395835)
+
+[node name="Cig2" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0208039)
+
+[node name="Cig4" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0162745)
+
+[node name="Cig5" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0362968)
+
+[node name="Cig6" parent="Model/Pack/Cigarettes/FrontRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0553304)
+
+[node name="MiddleRow" type="Node3D" parent="Model/Pack/Cigarettes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0253378, 0, 0)
+
+[node name="Cig0" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0574718)
+
+[node name="Cig1" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0395835)
+
+[node name="Cig2" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0208039)
+
+[node name="Cig3" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.00226468)
+
+[node name="Cig4" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0162745)
+
+[node name="Cig5" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0362968)
+
+[node name="Cig6" parent="Model/Pack/Cigarettes/MiddleRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0553304)
+
+[node name="BackRow" type="Node3D" parent="Model/Pack/Cigarettes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0458388, 0, 0)
+
+[node name="Cig0" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0574718)
+
+[node name="Cig1" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0395835)
+
+[node name="Cig2" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.0208039)
+
+[node name="Cig3" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, 0.00226468)
+
+[node name="Cig4" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0162745)
+
+[node name="Cig5" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0362968)
+
+[node name="Cig6" parent="Model/Pack/Cigarettes/BackRow" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.175052, 0, 0, 0, 0.175052, 0, 0, 0, 0.175052, 0.0242754, 0, -0.0553304)
+
+[node name="Area3D" type="Area3D" parent="Model/Pack"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Pack/Area3D"]
+transform = Transform3D(4.16667, 0, 2.84217e-14, 0, 3.33333, 0, 1.42109e-14, 0, 3.33333, -0.131861, 0.000279943, -0.001933)
+shape = SubResource("BoxShape3D_2xjhy")
+
+[node name="MiddleCig" parent="Model" instance=ExtResource("3_04mo4")]
+transform = Transform3D(0.217828, 0, -8.88178e-16, 0, 0.175052, 0, 0, 0, 0.175052, 0.0229067, 0, 0.00226468)
+
+[node name="ClickableComponent" parent="." instance=ExtResource("5_n75ra")]
+
+[node name="HoverComponent" parent="." instance=ExtResource("6_2xjhy")]
+
+[connection signal="clicked" from="ClickableComponent" to="." method="_on_clickable_component_clicked"]

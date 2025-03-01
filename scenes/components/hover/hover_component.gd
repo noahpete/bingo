@@ -7,8 +7,6 @@ extends Component
 var camera_3d: Camera3DRaycast
 var original_position: Vector3
 
-static var global_disable: bool = false
-
 
 func _ready() -> void:
 	super()
@@ -27,8 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is not InputEventMouseMotion:
 		return
-	var result = camera_3d.raycast_areas()
-	if result and result.collider.get_parent() == parent:
+	var result = camera_3d.raycast_bodies_and_areas()
+	if result and (result.collider.get_owner() == parent):
 		_hover()
 	else:
 		_unhover()
